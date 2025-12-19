@@ -14,13 +14,10 @@ RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debia
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     gcc g++ git make \
     curl \
-    && curl -fsSL https://mirrors.aliyun.com/nodesource/setup_20.x | bash - \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
-    && rm -rf /var/lib/apt/lists/*
-
-# Configure npm to use China mirror for faster downloads in China
-# Comment out the next line if building outside China
-RUN npm config set registry https://registry.npmmirror.com
+    && rm -rf /var/lib/apt/lists/* \
+    && npm config set registry https://registry.npmmirror.com
 
 # Set build optimization environment variables
 ENV MAKEFLAGS="-j$(nproc)"
@@ -68,7 +65,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     ffmpeg \
     supervisor \
     curl \
-    && curl -fsSL https://mirrors.aliyun.com/nodesource/setup_20.x | bash - \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 

@@ -23,17 +23,17 @@
 本项目的 Dockerfile 已针对中国网络环境优化，自动使用以下国内镜像：
 
 - **Debian 软件源**: 阿里云镜像 (`mirrors.aliyun.com`)
-- **Node.js 安装源**: 阿里云镜像 (`mirrors.aliyun.com/nodesource`)
+- **Node.js 安装**: 官方 NodeSource（`deb.nodesource.com`，国内可访问）
 - **npm 软件源**: npmmirror 镜像 (`registry.npmmirror.com`)
 - **PyPI 软件源**: 阿里云镜像 (`mirrors.aliyun.com/pypi/simple/`)
 
-**如果您在海外或其他地区，想使用官方源：**
+**如果您在海外或其他地区，想使用官方 npm 源：**
 
-编辑 `Dockerfile.single`，注释掉以下几行：
+编辑 `Dockerfile.single`，注释掉或删除以下内容：
 - 第 9-10 行：Debian 源替换（builder stage）
-- 第 23 行：npm 镜像配置
-- 第 34 行：PyPI 镜像配置（`UV_INDEX_URL`）
-- 第 54-55 行：Debian 源替换（runtime stage）
+- 第 20 行：npm 镜像配置（在安装命令末尾的 `&& npm config set registry ...`）
+- 第 30 行：PyPI 镜像配置（`UV_INDEX_URL`）
+- 第 59-60 行：Debian 源替换（runtime stage）
 
 ### 第一步：在联网环境构建镜像
 
