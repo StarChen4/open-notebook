@@ -4,14 +4,23 @@ FROM python:3.12-slim-bookworm AS builder
 # Install uv using the official method
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
+# Replace Debian sources with China mirror for faster downloads in China
+# Comment out the next 4 lines if building outside China
+RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debian.sources && \
+    sed -i 's/security.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debian.sources
+
 # Install system dependencies required for building certain Python packages
 # Add Node.js 20.x LTS for building frontend
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     gcc g++ git make \
     curl \
-    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && curl -fsSL https://mirrors.aliyun.com/nodesource/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
+
+# Configure npm to use China mirror for faster downloads in China
+# Comment out the next line if building outside China
+RUN npm config set registry https://registry.npmmirror.com
 
 # Set build optimization environment variables
 ENV MAKEFLAGS="-j$(nproc)"
@@ -19,6 +28,10 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV UV_COMPILE_BYTECODE=1
 ENV UV_LINK_MODE=copy
+
+# Configure uv to use China PyPI mirror for faster downloads in China
+# Comment out the next line if building outside China
+ENV UV_INDEX_URL=https://mirrors.aliyun.com/pypi/simple/
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -44,13 +57,18 @@ WORKDIR /app
 # Runtime stage
 FROM python:3.12-slim-bookworm AS runtime
 
+# Replace Debian sources with China mirror for faster downloads in China
+# Comment out the next 4 lines if building outside China
+RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debian.sources && \
+    sed -i 's/security.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debian.sources
+
 # Install runtime system dependencies including curl for SurrealDB installation
 # Add Node.js 20.x LTS for running frontend
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     ffmpeg \
     supervisor \
     curl \
-    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && curl -fsSL https://mirrors.aliyun.com/nodesource/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
