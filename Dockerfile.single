@@ -1,34 +1,50 @@
+# syntax=docker/dockerfile:1.6
+
+############################
+# Node stage (avoid nodesource)
+############################
+FROM node:20-bookworm-slim AS node20
+
+############################
 # Build stage
+############################
 FROM python:3.12-slim-bookworm AS builder
+
+# Optional proxy args (only effective if you pass them at build time)
+ARG http_proxy
+ARG https_proxy
+ARG no_proxy
+ENV http_proxy=$http_proxy \
+    https_proxy=$https_proxy \
+    no_proxy=$no_proxy
 
 # Install uv using the official method
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# Replace Debian sources with China mirror for faster downloads in China
-# Comment out the next 4 lines if building outside China
-RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debian.sources && \
-    sed -i 's/security.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debian.sources
+# Switch Debian apt sources to Tsinghua mirror (deb822 format in bookworm)
+RUN sed -i \
+  -e 's|URIs: http://deb.debian.org/debian|URIs: https://mirrors.tuna.tsinghua.edu.cn/debian|g' \
+  -e 's|URIs: http://security.debian.org/debian-security|URIs: https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' \
+  /etc/apt/sources.list.d/debian.sources
 
 # Install system dependencies required for building certain Python packages
-# Add Node.js 20.x LTS for building frontend
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     gcc g++ git make \
     curl \
-    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs \
-    && rm -rf /var/lib/apt/lists/* \
-    && npm config set registry https://registry.npmmirror.com
+    && rm -rf /var/lib/apt/lists/*
+
+# Node + npm (fixed)
+COPY --from=node20 /usr/local/bin/node /usr/local/bin/node
+COPY --from=node20 /usr/local/lib/node_modules /usr/local/lib/node_modules
+RUN ln -sf /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+ && ln -sf /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
 
 # Set build optimization environment variables
-ENV MAKEFLAGS="-j$(nproc)"
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-ENV UV_COMPILE_BYTECODE=1
-ENV UV_LINK_MODE=copy
-
-# Configure uv to use China PyPI mirror for faster downloads in China
-# Comment out the next line if building outside China
-ENV UV_INDEX_URL=https://mirrors.aliyun.com/pypi/simple/
+ENV MAKEFLAGS="-j$(nproc)" \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -51,31 +67,45 @@ RUN npm run build
 # Return to app root
 WORKDIR /app
 
+
+############################
 # Runtime stage
+############################
 FROM python:3.12-slim-bookworm AS runtime
 
-# Replace Debian sources with China mirror for faster downloads in China
-# Comment out the next 4 lines if building outside China
-RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debian.sources && \
-    sed -i 's/security.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debian.sources
+# Optional proxy args (only effective if you pass them at build time)
+ARG http_proxy
+ARG https_proxy
+ARG no_proxy
+ENV http_proxy=$http_proxy \
+    https_proxy=$https_proxy \
+    no_proxy=$no_proxy
+
+# Switch Debian apt sources to Tsinghua mirror
+RUN sed -i \
+  -e 's|URIs: http://deb.debian.org/debian|URIs: https://mirrors.tuna.tsinghua.edu.cn/debian|g' \
+  -e 's|URIs: http://security.debian.org/debian-security|URIs: https://mirrors.tuna.tsinghua.edu.cn/debian-security|g' \
+  /etc/apt/sources.list.d/debian.sources
 
 # Install runtime system dependencies including curl for SurrealDB installation
-# Add Node.js 20.x LTS for running frontend
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     ffmpeg \
     supervisor \
     curl \
-    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Install SurrealDB
+# Node + npm (fixed)
+COPY --from=node20 /usr/local/bin/node /usr/local/bin/node
+COPY --from=node20 /usr/local/lib/node_modules /usr/local/lib/node_modules
+RUN ln -sf /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+ && ln -sf /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
+
+# Install SurrealDB (still needs to reach install.surrealdb.com)
 RUN curl --proto '=https' --tlsv1.2 -sSf https://install.surrealdb.com | sh
 
-# Set offline mode for uv to prevent any network access during runtime
-ENV UV_OFFLINE=1
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# Install uv using the official method
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -106,15 +136,5 @@ COPY supervisord.single.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Create log directories
 RUN mkdir -p /var/log/supervisor
-
-# Runtime API URL Configuration
-# The API_URL environment variable can be set at container runtime to configure
-# where the frontend should connect to the API. This allows the same Docker image
-# to work in different deployment scenarios without rebuilding.
-#
-# If not set, the system will auto-detect based on incoming requests.
-# Set API_URL when using reverse proxies or custom domains.
-#
-# Example: docker run -e API_URL=https://your-domain.com/api ...
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
