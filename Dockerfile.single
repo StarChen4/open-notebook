@@ -57,8 +57,10 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 # Install SurrealDB
 RUN curl --proto '=https' --tlsv1.2 -sSf https://install.surrealdb.com | sh
 
-# Install uv using the official method
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+# Set offline mode for uv to prevent any network access during runtime
+ENV UV_OFFLINE=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Set the working directory in the container to /app
 WORKDIR /app
