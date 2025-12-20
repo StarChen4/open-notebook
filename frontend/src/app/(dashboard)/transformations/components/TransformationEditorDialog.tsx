@@ -17,10 +17,10 @@ import { useQueryClient } from '@tanstack/react-query'
 import { TRANSFORMATION_QUERY_KEYS } from '@/lib/hooks/use-transformations'
 
 const transformationSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
+  name: z.string().min(1, '名称为必填项'),
   title: z.string().optional(),
   description: z.string().optional(),
-  prompt: z.string().min(1, 'Prompt is required'),
+  prompt: z.string().min(1, '提示词为必填项'),
   apply_default: z.boolean().optional(),
 })
 
@@ -111,19 +111,19 @@ export function TransformationEditorDialog({ open, onOpenChange, transformation 
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-4xl w-full max-h-[90vh] overflow-hidden p-0">
         <DialogTitle className="sr-only">
-          {isEditing ? 'Edit transformation' : 'Create transformation'}
+          {isEditing ? '编辑转换' : '创建转换'}
         </DialogTitle>
         <form onSubmit={handleSubmit(onSubmit)} className="flex h-full flex-col">
           {isEditing && isLoading ? (
             <div className="flex-1 flex items-center justify-center py-10">
-              <span className="text-sm text-muted-foreground">Loading transformation…</span>
+              <span className="text-sm text-muted-foreground">加载转换中…</span>
             </div>
           ) : (
             <>
               <div className="border-b px-6 py-4 space-y-4">
                 <div>
                   <Label htmlFor="transformation-name" className="text-sm font-medium">
-                    Name
+                    名称
                   </Label>
                   <Controller
                     control={control}
@@ -132,7 +132,7 @@ export function TransformationEditorDialog({ open, onOpenChange, transformation 
                       <Input
                         id="transformation-name"
                         {...field}
-                        placeholder="Unique identifier, e.g. key_topics"
+                        placeholder="唯一标识符，例如 key_topics"
                       />
                     )}
                   />
@@ -144,7 +144,7 @@ export function TransformationEditorDialog({ open, onOpenChange, transformation 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="transformation-title" className="text-sm font-medium">
-                      Title
+                      标题
                     </Label>
                     <Controller
                       control={control}
@@ -153,7 +153,7 @@ export function TransformationEditorDialog({ open, onOpenChange, transformation 
                         <Input
                           id="transformation-title"
                           {...field}
-                          placeholder="Displayed title, defaults to name"
+                          placeholder="显示标题，默认为名称"
                         />
                       )}
                     />
@@ -171,14 +171,14 @@ export function TransformationEditorDialog({ open, onOpenChange, transformation 
                       )}
                     />
                     <Label htmlFor="transformation-default" className="text-sm">
-                      Suggest by default on new sources
+                      默认建议用于新来源
                     </Label>
                   </div>
                 </div>
 
                 <div>
                   <Label htmlFor="transformation-description" className="text-sm font-medium">
-                    Description
+                    描述
                   </Label>
                   <Controller
                     control={control}
@@ -187,7 +187,7 @@ export function TransformationEditorDialog({ open, onOpenChange, transformation 
                       <Textarea
                         id="transformation-description"
                         {...field}
-                        placeholder="Describe what this transformation does."
+                        placeholder="描述此转换的作用。"
                         rows={2}
                       />
                     )}
@@ -196,7 +196,7 @@ export function TransformationEditorDialog({ open, onOpenChange, transformation 
               </div>
 
               <div className="flex-1 overflow-y-auto px-6 py-4">
-                <Label className="text-sm font-medium">Prompt</Label>
+                <Label className="text-sm font-medium">提示词</Label>
                 <Controller
                   control={control}
                   name="prompt"
@@ -206,7 +206,7 @@ export function TransformationEditorDialog({ open, onOpenChange, transformation 
                       value={field.value}
                       onChange={field.onChange}
                       height={420}
-                      placeholder="Write the prompt that will power this transformation..."
+                      placeholder="编写驱动此转换的提示词..."
                       className="rounded-md border"
                     />
                   )}
@@ -215,8 +215,7 @@ export function TransformationEditorDialog({ open, onOpenChange, transformation 
                   <p className="text-sm text-red-600 mt-1">{errors.prompt.message}</p>
                 )}
                 <p className="text-xs text-muted-foreground mt-3">
-                  Prompts should be written with the source content in mind. You can ask the model to
-                  summarise, extract insights, or produce structured outputs such as tables.
+                  提示词应该结合来源内容编写。您可以要求模型进行总结、提取洞察或生成结构化输出（如表格）。
                 </p>
               </div>
             </>
@@ -224,14 +223,14 @@ export function TransformationEditorDialog({ open, onOpenChange, transformation 
 
           <div className="border-t px-6 py-4 flex justify-end gap-2">
             <Button type="button" variant="outline" onClick={handleClose}>
-              Cancel
+              取消
             </Button>
             <Button type="submit" disabled={isSaving || (isEditing && isLoading)}>
               {isSaving
-                ? isEditing ? 'Saving…' : 'Creating…'
+                ? isEditing ? '保存中…' : '创建中…'
                 : isEditing
-                  ? 'Save Transformation'
-                  : 'Create Transformation'}
+                  ? '保存转换'
+                  : '创建转换'}
             </Button>
           </div>
         </form>
