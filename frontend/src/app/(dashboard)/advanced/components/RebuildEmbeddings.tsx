@@ -121,10 +121,10 @@ export function RebuildEmbeddings() {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          🔄 Rebuild Embeddings
+          🔄 重建嵌入
         </CardTitle>
         <CardDescription>
-          Rebuild vector embeddings for your content. Use this when switching embedding models or fixing corrupted embeddings.
+          为您的内容重建向量嵌入。在切换嵌入模型或修复损坏的嵌入时使用此功能。
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -132,25 +132,25 @@ export function RebuildEmbeddings() {
         {!isRebuildActive && (
           <div className="space-y-6">
             <div className="space-y-3">
-              <Label htmlFor="mode">Rebuild Mode</Label>
+              <Label htmlFor="mode">重建模式</Label>
               <Select value={mode} onValueChange={(value) => setMode(value as 'existing' | 'all')}>
                 <SelectTrigger id="mode">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="existing">Existing</SelectItem>
-                  <SelectItem value="all">All</SelectItem>
+                  <SelectItem value="existing">仅现有</SelectItem>
+                  <SelectItem value="all">全部</SelectItem>
                 </SelectContent>
               </Select>
               <p className="text-sm text-muted-foreground">
                 {mode === 'existing'
-                  ? 'Re-embed only items that already have embeddings (faster, for model switching)'
-                  : 'Re-embed existing items + create embeddings for items without any (slower, comprehensive)'}
+                  ? '仅重新嵌入已有嵌入的项目（更快，适用于切换模型）'
+                  : '重新嵌入现有项目 + 为没有嵌入的项目创建嵌入（较慢，全面）'}
               </p>
             </div>
 
             <div className="space-y-3">
-              <Label>Include in Rebuild</Label>
+              <Label>包含在重建中</Label>
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
                   <Checkbox
@@ -159,7 +159,7 @@ export function RebuildEmbeddings() {
                     onCheckedChange={(checked) => setIncludeSources(checked === true)}
                   />
                   <Label htmlFor="sources" className="font-normal cursor-pointer">
-                    Sources
+                    来源
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -169,7 +169,7 @@ export function RebuildEmbeddings() {
                     onCheckedChange={(checked) => setIncludeNotes(checked === true)}
                   />
                   <Label htmlFor="notes" className="font-normal cursor-pointer">
-                    Notes
+                    笔记
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -179,7 +179,7 @@ export function RebuildEmbeddings() {
                     onCheckedChange={(checked) => setIncludeInsights(checked === true)}
                   />
                   <Label htmlFor="insights" className="font-normal cursor-pointer">
-                    Insights
+                    见解
                   </Label>
                 </div>
               </div>
@@ -187,7 +187,7 @@ export function RebuildEmbeddings() {
                 <Alert variant="destructive">
                   <AlertCircle className="h-4 w-4" />
                   <AlertDescription>
-                    Please select at least one item type to rebuild
+                    请至少选择一种项目类型进行重建
                   </AlertDescription>
                 </Alert>
               )}
@@ -201,10 +201,10 @@ export function RebuildEmbeddings() {
               {rebuildMutation.isPending ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Starting Rebuild...
+                  正在启动重建...
                 </>
               ) : (
-                '🚀 Start Rebuild'
+                '🚀 开始重建'
               )}
             </Button>
 
@@ -212,7 +212,7 @@ export function RebuildEmbeddings() {
               <Alert variant="destructive">
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>
-                  Failed to start rebuild: {(rebuildMutation.error as Error)?.message || 'Unknown error'}
+                  启动重建失败：{(rebuildMutation.error as Error)?.message || '未知错误'}
                 </AlertDescription>
               </Alert>
             )}
@@ -230,21 +230,21 @@ export function RebuildEmbeddings() {
                 {status.status === 'failed' && <XCircle className="h-5 w-5 text-red-500" />}
                 <div className="flex flex-col">
                   <span className="font-medium">
-                    {status.status === 'queued' && 'Queued'}
-                    {status.status === 'running' && 'Running...'}
-                    {status.status === 'completed' && 'Completed!'}
-                    {status.status === 'failed' && 'Failed'}
+                    {status.status === 'queued' && '排队中'}
+                    {status.status === 'running' && '运行中...'}
+                    {status.status === 'completed' && '已完成！'}
+                    {status.status === 'failed' && '失败'}
                   </span>
                   {status.status === 'running' && (
                     <span className="text-sm text-muted-foreground">
-                      You can leave this page as this will run in the background
+                      您可以离开此页面，这将在后台运行
                     </span>
                   )}
                 </div>
               </div>
               {(status.status === 'completed' || status.status === 'failed') && (
                 <Button variant="outline" size="sm" onClick={handleReset}>
-                  Start New Rebuild
+                  开始新的重建
                 </Button>
               )}
             </div>
@@ -252,15 +252,15 @@ export function RebuildEmbeddings() {
             {progressData && (
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span>Progress</span>
+                  <span>进度</span>
                   <span className="font-medium">
-                    {processedItems}/{totalItems} items ({progressPercent.toFixed(1)}%)
+                    {processedItems}/{totalItems} 项 ({progressPercent.toFixed(1)}%)
                   </span>
                 </div>
                 <Progress value={progressPercent} className="h-2" />
                 {failedItems > 0 && (
                   <p className="text-sm text-yellow-600">
-                    ⚠️ {failedItems} items failed to process
+                    ⚠️ {failedItems} 项处理失败
                   </p>
                 )}
               </div>
@@ -269,21 +269,21 @@ export function RebuildEmbeddings() {
             {stats && (
               <div className="grid grid-cols-4 gap-4">
                 <div className="space-y-1">
-                  <p className="text-sm text-muted-foreground">Sources</p>
+                  <p className="text-sm text-muted-foreground">来源</p>
                   <p className="text-2xl font-bold">{sourcesProcessed}</p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm text-muted-foreground">Notes</p>
+                  <p className="text-sm text-muted-foreground">笔记</p>
                   <p className="text-2xl font-bold">{notesProcessed}</p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm text-muted-foreground">Insights</p>
+                  <p className="text-sm text-muted-foreground">见解</p>
                   <p className="text-2xl font-bold">{insightsProcessed}</p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm text-muted-foreground">Time</p>
+                  <p className="text-sm text-muted-foreground">时间</p>
                   <p className="text-2xl font-bold">
-                    {processingTimeSeconds !== undefined ? `${processingTimeSeconds.toFixed(1)}s` : '—'}
+                    {processingTimeSeconds !== undefined ? `${processingTimeSeconds.toFixed(1)}秒` : '—'}
                   </p>
                 </div>
               </div>
@@ -298,9 +298,9 @@ export function RebuildEmbeddings() {
 
             {status.started_at && (
               <div className="text-sm text-muted-foreground space-y-1">
-                <p>Started: {new Date(status.started_at).toLocaleString()}</p>
+                <p>开始时间：{new Date(status.started_at).toLocaleString()}</p>
                 {status.completed_at && (
-                  <p>Completed: {new Date(status.completed_at).toLocaleString()}</p>
+                  <p>完成时间：{new Date(status.completed_at).toLocaleString()}</p>
                 )}
               </div>
             )}
@@ -310,49 +310,49 @@ export function RebuildEmbeddings() {
         {/* Help Section */}
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="when">
-            <AccordionTrigger>When should I rebuild embeddings?</AccordionTrigger>
+            <AccordionTrigger>何时应该重建嵌入？</AccordionTrigger>
             <AccordionContent className="space-y-2 text-sm">
-              <p><strong>You should rebuild embeddings when:</strong></p>
+              <p><strong>您应该在以下情况下重建嵌入：</strong></p>
               <ul className="list-disc list-inside space-y-1 ml-2">
-                <li><strong>Switching embedding models:</strong> If you change from one embedding model to another, you need to rebuild all embeddings to ensure consistency.</li>
-                <li><strong>Upgrading model versions:</strong> When updating to a newer version of your embedding model, rebuild to take advantage of improvements.</li>
-                <li><strong>Fixing corrupted embeddings:</strong> If you suspect some embeddings are corrupted or missing, rebuilding can restore them.</li>
-                <li><strong>After bulk imports:</strong> If you imported content without embeddings, use &quot;All&quot; mode to embed everything.</li>
+                <li><strong>切换嵌入模型：</strong>如果您从一个嵌入模型切换到另一个，需要重建所有嵌入以确保一致性。</li>
+                <li><strong>升级模型版本：</strong>当更新到嵌入模型的新版本时，重建以利用改进功能。</li>
+                <li><strong>修复损坏的嵌入：</strong>如果您怀疑某些嵌入已损坏或丢失，重建可以恢复它们。</li>
+                <li><strong>批量导入后：</strong>如果您导入的内容没有嵌入，请使用"全部"模式嵌入所有内容。</li>
               </ul>
             </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="time">
-            <AccordionTrigger>How long does rebuilding take?</AccordionTrigger>
+            <AccordionTrigger>重建需要多长时间？</AccordionTrigger>
             <AccordionContent className="space-y-2 text-sm">
-              <p><strong>Processing time depends on:</strong></p>
+              <p><strong>处理时间取决于：</strong></p>
               <ul className="list-disc list-inside space-y-1 ml-2">
-                <li>Number of items to process</li>
-                <li>Embedding model speed</li>
-                <li>API rate limits (for cloud providers)</li>
-                <li>System resources</li>
+                <li>要处理的项目数量</li>
+                <li>嵌入模型速度</li>
+                <li>API 速率限制（对于云提供商）</li>
+                <li>系统资源</li>
               </ul>
-              <p className="mt-2"><strong>Typical rates:</strong></p>
+              <p className="mt-2"><strong>典型速率：</strong></p>
               <ul className="list-disc list-inside space-y-1 ml-2">
-                <li><strong>Local models</strong> (Ollama): Very fast, limited only by hardware</li>
-                <li><strong>Cloud APIs</strong> (OpenAI, Google): Moderate speed, may hit rate limits with large datasets</li>
-                <li><strong>Sources:</strong> Slower than notes/insights (creates multiple chunks per source)</li>
+                <li><strong>本地模型</strong>（Ollama）：非常快，仅受硬件限制</li>
+                <li><strong>云 API</strong>（OpenAI、Google）：速度适中，处理大型数据集时可能会达到速率限制</li>
+                <li><strong>来源：</strong>比笔记/见解慢（每个来源创建多个分块）</li>
               </ul>
-              <p className="mt-2"><em>Example: Rebuilding 200 items might take 2-5 minutes with cloud APIs, or under 1 minute with local models.</em></p>
+              <p className="mt-2"><em>示例：使用云 API 重建 200 项可能需要 2-5 分钟，使用本地模型则不到 1 分钟。</em></p>
             </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="safe">
-            <AccordionTrigger>Is it safe to rebuild while using the app?</AccordionTrigger>
+            <AccordionTrigger>在使用应用时重建是否安全？</AccordionTrigger>
             <AccordionContent className="space-y-2 text-sm">
-              <p><strong>Yes, rebuilding is safe!</strong> The rebuild process:</p>
+              <p><strong>是的，重建是安全的！</strong>重建过程：</p>
               <ul className="list-disc list-inside space-y-1 ml-2">
-                <li>✅ <strong>Is idempotent:</strong> Running multiple times produces the same result</li>
-                <li>✅ <strong>Doesn&apos;t delete content:</strong> Only replaces embeddings</li>
-                <li>✅ <strong>Can be run anytime:</strong> No need to stop other operations</li>
-                <li>✅ <strong>Handles errors gracefully:</strong> Failed items are logged and skipped</li>
+                <li>✅ <strong>是幂等的：</strong>多次运行产生相同的结果</li>
+                <li>✅ <strong>不删除内容：</strong>仅替换嵌入</li>
+                <li>✅ <strong>可以随时运行：</strong>无需停止其他操作</li>
+                <li>✅ <strong>优雅地处理错误：</strong>失败的项目会被记录并跳过</li>
               </ul>
-              <p className="mt-2">⚠️ <strong>However:</strong> Very large rebuilds (1000s of items) may temporarily slow down searches while processing.</p>
+              <p className="mt-2">⚠️ <strong>但是：</strong>非常大的重建（数千个项目）在处理时可能会暂时减慢搜索速度。</p>
             </AccordionContent>
           </AccordionItem>
         </Accordion>

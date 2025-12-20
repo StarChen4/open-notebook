@@ -42,31 +42,31 @@ import {
 
 const navigation = [
   {
-    title: 'Collect',
+    title: '收集',
     items: [
-      { name: 'Sources', href: '/sources', icon: FileText },
+      { name: '来源', href: '/sources', icon: FileText },
     ],
   },
   {
-    title: 'Process',
+    title: '处理',
     items: [
-      { name: 'Notebooks', href: '/notebooks', icon: Book },
-      { name: 'Ask and Search', href: '/search', icon: Search },
+      { name: '笔记本', href: '/notebooks', icon: Book },
+      { name: '问答与搜索', href: '/search', icon: Search },
     ],
   },
   {
-    title: 'Create',
+    title: '创建',
     items: [
-      { name: 'Podcasts', href: '/podcasts', icon: Mic },
+      { name: '播客', href: '/podcasts', icon: Mic },
     ],
   },
   {
-    title: 'Manage',
+    title: '管理',
     items: [
-      { name: 'Models', href: '/models', icon: Bot },
-      { name: 'Transformations', href: '/transformations', icon: Shuffle },
-      { name: 'Settings', href: '/settings', icon: Settings },
-      { name: 'Advanced', href: '/advanced', icon: Wrench },
+      { name: '模型', href: '/models', icon: Bot },
+      { name: '转换', href: '/transformations', icon: Shuffle },
+      { name: '设置', href: '/settings', icon: Settings },
+      { name: '高级', href: '/advanced', icon: Wrench },
     ],
   },
 ] as const
@@ -179,7 +179,7 @@ export function AppSidebar() {
                       </Button>
                     </DropdownMenuTrigger>
                   </TooltipTrigger>
-                  <TooltipContent side="right">Create</TooltipContent>
+                  <TooltipContent side="right">创建</TooltipContent>
                 </Tooltip>
               ) : (
                 <DropdownMenuTrigger asChild>
@@ -190,7 +190,7 @@ export function AppSidebar() {
                     className="w-full justify-start bg-primary hover:bg-primary/90 text-primary-foreground border-0"
                   >
                     <Plus className="h-4 w-4 mr-2" />
-                    Create
+                    创建
                   </Button>
                 </DropdownMenuTrigger>
               )}
@@ -208,7 +208,7 @@ export function AppSidebar() {
                   className="gap-2"
                 >
                   <FileText className="h-4 w-4" />
-                  Source
+                  来源
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onSelect={(event) => {
@@ -218,7 +218,7 @@ export function AppSidebar() {
                   className="gap-2"
                 >
                   <Book className="h-4 w-4" />
-                  Notebook
+                  笔记本
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onSelect={(event) => {
@@ -228,7 +228,7 @@ export function AppSidebar() {
                   className="gap-2"
                 >
                   <Mic className="h-4 w-4" />
-                  Podcast
+                  播客
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -298,14 +298,14 @@ export function AppSidebar() {
               <div className="flex items-center justify-between">
                 <span className="flex items-center gap-1.5">
                   <Command className="h-3 w-3" />
-                  Quick actions
+                  快速操作
                 </span>
                 <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
                   {isMac ? <span className="text-xs">⌘</span> : <span>Ctrl+</span>}K
                 </kbd>
               </div>
               <p className="mt-1 text-[10px] text-sidebar-foreground/40">
-                Navigation, search, ask, theme
+                导航、搜索、提问、主题
               </p>
             </div>
           )}
@@ -323,7 +323,7 @@ export function AppSidebar() {
                     <ThemeToggle iconOnly />
                   </div>
                 </TooltipTrigger>
-                <TooltipContent side="right">Theme</TooltipContent>
+                <TooltipContent side="right">主题</TooltipContent>
               </Tooltip>
             ) : (
               <ThemeToggle />
@@ -341,7 +341,7 @@ export function AppSidebar() {
                   <LogOut className="h-4 w-4" />
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="right">Sign Out</TooltipContent>
+              <TooltipContent side="right">退出登录</TooltipContent>
             </Tooltip>
           ) : (
             <Button
@@ -350,7 +350,7 @@ export function AppSidebar() {
               onClick={logout}
             >
               <LogOut className="h-4 w-4" />
-              Sign Out
+              退出登录
             </Button>
           )}
         </div>

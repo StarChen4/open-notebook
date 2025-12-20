@@ -32,8 +32,8 @@ export function SystemInfo() {
     return (
       <Card className="p-6">
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold">System Information</h2>
-          <div className="text-sm text-muted-foreground">Loading...</div>
+          <h2 className="text-xl font-semibold">系统信息</h2>
+          <div className="text-sm text-muted-foreground">加载中...</div>
         </div>
       </Card>
     )
@@ -42,37 +42,37 @@ export function SystemInfo() {
   return (
     <Card className="p-6">
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold">System Information</h2>
+        <h2 className="text-xl font-semibold">系统信息</h2>
 
         <div className="space-y-3">
           {/* Current Version */}
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium">Current Version</span>
-            <Badge variant="outline">{config?.version || 'Unknown'}</Badge>
+            <span className="text-sm font-medium">当前版本</span>
+            <Badge variant="outline">{config?.version || '未知'}</Badge>
           </div>
 
           {/* Latest Version */}
           {config?.latestVersion && (
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Latest Version</span>
+              <span className="text-sm font-medium">最新版本</span>
               <Badge variant="outline">{config.latestVersion}</Badge>
             </div>
           )}
 
           {/* Update Status */}
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium">Status</span>
+            <span className="text-sm font-medium">状态</span>
             {config?.hasUpdate ? (
               <Badge variant="destructive">
-                Update Available
+                有更新可用
               </Badge>
             ) : config?.latestVersion ? (
               <Badge variant="outline" className="text-green-600 border-green-600">
-                Up to Date
+                已是最新
               </Badge>
             ) : (
               <Badge variant="outline" className="text-muted-foreground">
-                Unknown
+                未知
               </Badge>
             )}
           </div>
@@ -86,7 +86,7 @@ export function SystemInfo() {
                 rel="noopener noreferrer"
                 className="text-sm text-primary hover:underline inline-flex items-center gap-1"
               >
-                View on GitHub
+                在 GitHub 上查看
                 <svg
                   className="w-4 h-4"
                   fill="none"
@@ -107,7 +107,7 @@ export function SystemInfo() {
           {/* Version Check Failed Message */}
           {!config?.latestVersion && config?.version && (
             <div className="pt-2 text-xs text-muted-foreground">
-              Unable to check for updates. GitHub may be unreachable.
+              无法检查更新。GitHub 可能无法访问。
             </div>
           )}
         </div>

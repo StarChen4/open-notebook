@@ -43,7 +43,7 @@ export function SaveToNotebooksDialog({
 
   const handleSave = async () => {
     if (selectedNotebooks.length === 0) {
-      toast.error('Please select at least one notebook')
+      toast.error('请至少选择一个笔记本')
       return
     }
 
@@ -58,11 +58,11 @@ export function SaveToNotebooksDialog({
         })
       }
 
-      toast.success(`Answer saved to ${selectedNotebooks.length} notebook${selectedNotebooks.length > 1 ? 's' : ''}`)
+      toast.success(`回答已保存到 ${selectedNotebooks.length} 个笔记本`)
       setSelectedNotebooks([])
       onOpenChange(false)
     } catch {
-      toast.error('Failed to save answer')
+      toast.error('保存回答失败')
     }
   }
 
@@ -76,9 +76,9 @@ export function SaveToNotebooksDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle>Save to Notebooks</DialogTitle>
+          <DialogTitle>保存到笔记本</DialogTitle>
           <DialogDescription>
-            Select one or more notebooks to save this answer
+            选择一个或多个笔记本来保存此回答
           </DialogDescription>
         </DialogHeader>
 
@@ -92,14 +92,14 @@ export function SaveToNotebooksDialog({
               items={notebookItems}
               selectedIds={selectedNotebooks}
               onToggle={handleToggle}
-              emptyMessage="No notebooks found. Create a notebook first."
+              emptyMessage="未找到笔记本。请先创建笔记本。"
             />
           )}
         </div>
 
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            Cancel
+            取消
           </Button>
           <Button
             onClick={handleSave}
@@ -108,10 +108,10 @@ export function SaveToNotebooksDialog({
             {createNote.isPending ? (
               <>
                 <LoadingSpinner size="sm" className="mr-2" />
-                Saving...
+                保存中...
               </>
             ) : (
-              `Save to ${selectedNotebooks.length || ''} Notebook${selectedNotebooks.length !== 1 ? 's' : ''}`
+              `保存到 ${selectedNotebooks.length || ''} 个笔记本`
             )}
           </Button>
         </DialogFooter>

@@ -48,7 +48,7 @@ export function NotesColumn({
   // Collapsible column state
   const { notesCollapsed, toggleNotes } = useNotebookColumnsStore()
   const collapseButton = useMemo(
-    () => createCollapseButton(toggleNotes, 'Notes'),
+    () => createCollapseButton(toggleNotes, '笔记'),
     [toggleNotes]
   )
 
@@ -75,12 +75,12 @@ export function NotesColumn({
         isCollapsed={notesCollapsed}
         onToggle={toggleNotes}
         collapsedIcon={StickyNote}
-        collapsedLabel="Notes"
+        collapsedLabel="笔记"
       >
         <Card className="h-full flex flex-col flex-1 overflow-hidden">
           <CardHeader className="pb-3 flex-shrink-0">
             <div className="flex items-center justify-between gap-2">
-              <CardTitle className="text-lg">Notes</CardTitle>
+              <CardTitle className="text-lg">笔记</CardTitle>
               <div className="flex items-center gap-2">
                 <Button
                   size="sm"
@@ -90,7 +90,7 @@ export function NotesColumn({
                   }}
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Write Note
+                  写笔记
                 </Button>
                 {collapseButton}
               </div>
@@ -105,8 +105,8 @@ export function NotesColumn({
             ) : !notes || notes.length === 0 ? (
               <EmptyState
                 icon={StickyNote}
-                title="No notes yet"
-                description="Create your first note to capture insights and observations."
+                title="还没有笔记"
+                description="创建您的第一条笔记以记录见解和观察。"
               />
             ) : (
               <div className="space-y-3">
@@ -124,7 +124,7 @@ export function NotesColumn({
                           <User className="h-4 w-4 text-muted-foreground" />
                         )}
                         <Badge variant="secondary" className="text-xs">
-                          {note.note_type === 'ai' ? 'AI Generated' : 'Human'}
+                          {note.note_type === 'ai' ? 'AI 生成' : '人工'}
                         </Badge>
                       </div>
 
@@ -165,7 +165,7 @@ export function NotesColumn({
                               className="text-red-600 focus:text-red-600"
                             >
                               <Trash2 className="h-4 w-4 mr-2" />
-                              Delete Note
+                              删除笔记
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -206,9 +206,9 @@ export function NotesColumn({
       <ConfirmDialog
         open={deleteDialogOpen}
         onOpenChange={setDeleteDialogOpen}
-        title="Delete Note"
-        description="Are you sure you want to delete this note? This action cannot be undone."
-        confirmText="Delete"
+        title="删除笔记"
+        description="您确定要删除此笔记吗？此操作无法撤销。"
+        confirmText="删除"
         onConfirm={handleDeleteConfirm}
         isLoading={deleteNote.isPending}
         confirmVariant="destructive"

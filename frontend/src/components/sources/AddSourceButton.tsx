@@ -31,7 +31,7 @@ export function AddSourceButton({
         className={className}
       >
         <PlusIcon className={iconOnly ? "h-4 w-4" : "h-4 w-4 mr-2"} />
-        {!iconOnly && "Add Source"}
+        {!iconOnly && "添加来源"}
       </Button>
 
       <AddSourceDialog

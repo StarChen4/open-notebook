@@ -16,9 +16,9 @@ export default function PodcastsPage() {
       <div className="flex-1 overflow-y-auto">
         <div className="px-6 py-6 space-y-6">
           <header className="space-y-1">
-            <h1 className="text-2xl font-semibold tracking-tight">Podcasts</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">播客</h1>
             <p className="text-muted-foreground">
-              Keep track of generated episodes and manage reusable templates.
+              跟踪已生成的剧集并管理可重复使用的模板。
             </p>
           </header>
 
@@ -28,15 +28,15 @@ export default function PodcastsPage() {
             className="space-y-6"
           >
             <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Choose a view</p>
-              <TabsList aria-label="Podcast views" className="w-full max-w-md">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">选择视图</p>
+              <TabsList aria-label="播客视图" className="w-full max-w-md">
                 <TabsTrigger value="episodes">
                   <Mic className="h-4 w-4" />
-                  Episodes
+                  剧集
                 </TabsTrigger>
                 <TabsTrigger value="templates">
                   <LayoutTemplate className="h-4 w-4" />
-                  Templates
+                  模板
                 </TabsTrigger>
               </TabsList>
             </div>

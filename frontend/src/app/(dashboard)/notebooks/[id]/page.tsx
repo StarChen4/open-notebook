@@ -112,8 +112,8 @@ export default function NotebookPage() {
     return (
       <AppShell>
         <div className="p-6">
-          <h1 className="text-2xl font-bold mb-4">Notebook Not Found</h1>
-          <p className="text-muted-foreground">The requested notebook could not be found.</p>
+          <h1 className="text-2xl font-bold mb-4">未找到笔记本</h1>
+          <p className="text-muted-foreground">无法找到请求的笔记本。</p>
         </div>
       </AppShell>
     )
@@ -135,15 +135,15 @@ export default function NotebookPage() {
                   <TabsList className="grid w-full grid-cols-3">
                     <TabsTrigger value="sources" className="gap-2">
                       <FileText className="h-4 w-4" />
-                      Sources
+                      来源
                     </TabsTrigger>
                     <TabsTrigger value="notes" className="gap-2">
                       <StickyNote className="h-4 w-4" />
-                      Notes
+                      笔记
                     </TabsTrigger>
                     <TabsTrigger value="chat" className="gap-2">
                       <MessageSquare className="h-4 w-4" />
-                      Chat
+                      对话
                     </TabsTrigger>
                   </TabsList>
                 </Tabs>

@@ -55,40 +55,40 @@ const STATUS_CONFIG = {
     color: 'text-blue-600',
     bgColor: 'bg-blue-50',
     borderColor: 'border-blue-200',
-    label: 'Processing',
-    description: 'Preparing to process'
+    label: '处理中',
+    description: '准备处理'
   },
   queued: {
     icon: Clock,
     color: 'text-blue-600',
     bgColor: 'bg-blue-50',
     borderColor: 'border-blue-200',
-    label: 'Queued',
-    description: 'Waiting to be processed'
+    label: '排队中',
+    description: '等待处理'
   },
   running: {
     icon: Loader2,
     color: 'text-blue-600',
     bgColor: 'bg-blue-50',
     borderColor: 'border-blue-200',
-    label: 'Processing',
-    description: 'Being processed'
+    label: '处理中',
+    description: '正在处理'
   },
   completed: {
     icon: CheckCircle,
     color: 'text-green-600',
     bgColor: 'bg-green-50',
     borderColor: 'border-green-200',
-    label: 'Completed',
-    description: 'Successfully processed'
+    label: '已完成',
+    description: '处理成功'
   },
   failed: {
     icon: AlertTriangle,
     color: 'text-red-600',
     bgColor: 'bg-red-50',
     borderColor: 'border-red-200',
-    label: 'Failed',
-    description: 'Processing failed'
+    label: '失败',
+    description: '处理失败'
   }
 } as const
 
@@ -168,7 +168,7 @@ export function SourceCard({
   const sourceType = getSourceType(source)
   const SourceTypeIcon = SOURCE_TYPE_ICONS[sourceType]
   
-  const title = source.title || 'Untitled Source'
+  const title = source.title || '未命名来源'
 
   const handleRetry = () => {
     if (onRetry) {
@@ -222,7 +222,7 @@ export function SourceCard({
                     'h-3 w-3',
                     isProcessing && 'animate-spin'
                   )} />
-                  {statusLoading && shouldFetchStatus ? 'Checking...' : statusConfig.label}
+                  {statusLoading && shouldFetchStatus ? '检查中...' : statusConfig.label}
                 </div>
 
                 {/* Source type indicator */}
@@ -260,7 +260,7 @@ export function SourceCard({
 
               {isCompleted && source.insights_count > 0 && (
                 <Badge variant="outline" className="text-xs">
-                  {source.insights_count} insights
+                  {source.insights_count} 条洞察
                 </Badge>
               )}
               {source.topics && source.topics.length > 0 && isCompleted && (
@@ -314,7 +314,7 @@ export function SourceCard({
                     disabled={!onRemoveFromNotebook}
                   >
                     <Unlink className="h-4 w-4 mr-2" />
-                    Remove from Notebook
+                    从笔记本中移除
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                 </>
@@ -330,7 +330,7 @@ export function SourceCard({
                     disabled={!onRetry}
                   >
                     <RefreshCw className="h-4 w-4 mr-2" />
-                    Retry Processing
+                    重试处理
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                 </>
@@ -345,7 +345,7 @@ export function SourceCard({
                 className="text-red-600 focus:text-red-600"
               >
                 <Trash2 className="h-4 w-4 mr-2" />
-                Delete Source
+                删除来源
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -362,7 +362,7 @@ export function SourceCard({
               className="h-7 text-xs"
             >
               <RefreshCw className="h-3 w-3 mr-1" />
-              Retry
+              重试
             </Button>
           </div>
         )}
@@ -371,7 +371,7 @@ export function SourceCard({
         {isProcessing && statusData?.processing_info?.progress && (
           <div className="mt-3 pt-2 border-t">
             <div className="flex justify-between items-center mb-1">
-              <span className="text-xs text-gray-600">Progress</span>
+              <span className="text-xs text-gray-600">进度</span>
               <span className="text-xs text-gray-600">
                 {Math.round(statusData.processing_info.progress as number)}%
               </span>

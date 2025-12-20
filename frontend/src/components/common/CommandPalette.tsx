@@ -31,26 +31,26 @@ import {
 } from 'lucide-react'
 
 const navigationItems = [
-  { name: 'Sources', href: '/sources', icon: FileText, keywords: ['files', 'documents', 'upload'] },
-  { name: 'Notebooks', href: '/notebooks', icon: Book, keywords: ['notes', 'research', 'projects'] },
-  { name: 'Ask and Search', href: '/search', icon: Search, keywords: ['find', 'query'] },
-  { name: 'Podcasts', href: '/podcasts', icon: Mic, keywords: ['audio', 'episodes', 'generate'] },
-  { name: 'Models', href: '/models', icon: Bot, keywords: ['ai', 'llm', 'providers', 'openai', 'anthropic'] },
-  { name: 'Transformations', href: '/transformations', icon: Shuffle, keywords: ['prompts', 'templates', 'actions'] },
-  { name: 'Settings', href: '/settings', icon: Settings, keywords: ['preferences', 'config', 'options'] },
-  { name: 'Advanced', href: '/advanced', icon: Wrench, keywords: ['debug', 'system', 'tools'] },
+  { name: '来源', href: '/sources', icon: FileText, keywords: ['files', 'documents', 'upload'] },
+  { name: '笔记本', href: '/notebooks', icon: Book, keywords: ['notes', 'research', 'projects'] },
+  { name: '问答与搜索', href: '/search', icon: Search, keywords: ['find', 'query'] },
+  { name: '播客', href: '/podcasts', icon: Mic, keywords: ['audio', 'episodes', 'generate'] },
+  { name: '模型', href: '/models', icon: Bot, keywords: ['ai', 'llm', 'providers', 'openai', 'anthropic'] },
+  { name: '转换', href: '/transformations', icon: Shuffle, keywords: ['prompts', 'templates', 'actions'] },
+  { name: '设置', href: '/settings', icon: Settings, keywords: ['preferences', 'config', 'options'] },
+  { name: '高级', href: '/advanced', icon: Wrench, keywords: ['debug', 'system', 'tools'] },
 ]
 
 const createItems = [
-  { name: 'Create Source', action: 'source', icon: FileText },
-  { name: 'Create Notebook', action: 'notebook', icon: Book },
-  { name: 'Create Podcast', action: 'podcast', icon: Mic },
+  { name: '创建来源', action: 'source', icon: FileText },
+  { name: '创建笔记本', action: 'notebook', icon: Book },
+  { name: '创建播客', action: 'podcast', icon: Mic },
 ]
 
 const themeItems = [
-  { name: 'Light Theme', value: 'light' as const, icon: Sun, keywords: ['bright', 'day'] },
-  { name: 'Dark Theme', value: 'dark' as const, icon: Moon, keywords: ['night'] },
-  { name: 'System Theme', value: 'system' as const, icon: Monitor, keywords: ['auto', 'default'] },
+  { name: '浅色主题', value: 'light' as const, icon: Sun, keywords: ['bright', 'day'] },
+  { name: '深色主题', value: 'dark' as const, icon: Moon, keywords: ['night'] },
+  { name: '系统主题', value: 'system' as const, icon: Monitor, keywords: ['auto', 'default'] },
 ]
 
 export function CommandPalette() {
@@ -156,26 +156,26 @@ export function CommandPalette() {
     <CommandDialog
       open={open}
       onOpenChange={setOpen}
-      title="Command Palette"
-      description="Navigate, search, or ask your knowledge base"
+      title="命令面板"
+      description="导航、搜索或询问您的知识库"
       className="sm:max-w-lg"
     >
       <CommandInput
-        placeholder="Type a command or search..."
+        placeholder="输入命令或搜索..."
         value={query}
         onValueChange={setQuery}
       />
       <CommandList>
         {/* Search/Ask - show FIRST when there's a query with no command match */}
         {showSearchFirst && (
-          <CommandGroup heading="Search & Ask" forceMount>
+          <CommandGroup heading="搜索与提问" forceMount>
             <CommandItem
               value={`__search__ ${query}`}
               onSelect={handleSearch}
               forceMount
             >
               <Search className="h-4 w-4" />
-              <span>Search for &ldquo;{query}&rdquo;</span>
+              <span>搜索"{query}"</span>
             </CommandItem>
             <CommandItem
               value={`__ask__ ${query}`}
@@ -183,13 +183,13 @@ export function CommandPalette() {
               forceMount
             >
               <MessageCircleQuestion className="h-4 w-4" />
-              <span>Ask about &ldquo;{query}&rdquo;</span>
+              <span>询问"{query}"</span>
             </CommandItem>
           </CommandGroup>
         )}
 
         {/* Navigation */}
-        <CommandGroup heading="Navigation">
+        <CommandGroup heading="导航">
           {navigationItems.map((item) => (
             <CommandItem
               key={item.href}
@@ -203,11 +203,11 @@ export function CommandPalette() {
         </CommandGroup>
 
         {/* Notebooks */}
-        <CommandGroup heading="Notebooks">
+        <CommandGroup heading="笔记本">
           {notebooksLoading ? (
             <CommandItem disabled>
               <Loader2 className="h-4 w-4 animate-spin" />
-              <span>Loading notebooks...</span>
+              <span>加载笔记本中...</span>
             </CommandItem>
           ) : notebooks && notebooks.length > 0 ? (
             notebooks.map((notebook) => (
@@ -224,7 +224,7 @@ export function CommandPalette() {
         </CommandGroup>
 
         {/* Create */}
-        <CommandGroup heading="Create">
+        <CommandGroup heading="创建">
           {createItems.map((item) => (
             <CommandItem
               key={item.action}
@@ -238,7 +238,7 @@ export function CommandPalette() {
         </CommandGroup>
 
         {/* Theme */}
-        <CommandGroup heading="Theme">
+        <CommandGroup heading="主题">
           {themeItems.map((item) => (
             <CommandItem
               key={item.value}
@@ -255,14 +255,14 @@ export function CommandPalette() {
         {query.trim() && hasCommandMatch && (
           <>
             <CommandSeparator />
-            <CommandGroup heading="Or search your knowledge base" forceMount>
+            <CommandGroup heading="或搜索您的知识库" forceMount>
               <CommandItem
                 value={`__search__ ${query}`}
                 onSelect={handleSearch}
                 forceMount
               >
                 <Search className="h-4 w-4" />
-                <span>Search for &ldquo;{query}&rdquo;</span>
+                <span>搜索"{query}"</span>
               </CommandItem>
               <CommandItem
                 value={`__ask__ ${query}`}
@@ -270,7 +270,7 @@ export function CommandPalette() {
                 forceMount
               >
                 <MessageCircleQuestion className="h-4 w-4" />
-                <span>Ask about &ldquo;{query}&rdquo;</span>
+                <span>询问"{query}"</span>
               </CommandItem>
             </CommandGroup>
           </>

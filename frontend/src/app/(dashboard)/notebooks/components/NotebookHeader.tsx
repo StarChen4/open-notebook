@@ -61,10 +61,10 @@ export function NotebookHeader({ notebook }: NotebookHeaderProps) {
                 onSave={handleUpdateName}
                 className="text-2xl font-bold"
                 inputClassName="text-2xl font-bold"
-                placeholder="Notebook name"
+                placeholder="笔记本名称"
               />
               {notebook.archived && (
-                <Badge variant="secondary">Archived</Badge>
+                <Badge variant="secondary">已归档</Badge>
               )}
             </div>
             <div className="flex gap-2">
@@ -76,12 +76,12 @@ export function NotebookHeader({ notebook }: NotebookHeaderProps) {
                 {notebook.archived ? (
                   <>
                     <ArchiveRestore className="h-4 w-4 mr-2" />
-                    Unarchive
+                    取消归档
                   </>
                 ) : (
                   <>
                     <Archive className="h-4 w-4 mr-2" />
-                    Archive
+                    归档
                   </>
                 )}
               </Button>
@@ -92,7 +92,7 @@ export function NotebookHeader({ notebook }: NotebookHeaderProps) {
                 className="text-red-600 hover:text-red-700"
               >
                 <Trash2 className="h-4 w-4 mr-2" />
-                Delete
+                删除
               </Button>
             </div>
           </div>
@@ -102,14 +102,14 @@ export function NotebookHeader({ notebook }: NotebookHeaderProps) {
             onSave={handleUpdateDescription}
             className="text-muted-foreground"
             inputClassName="text-muted-foreground"
-            placeholder="Add a description..."
+            placeholder="添加描述..."
             multiline
-            emptyText="Add a description..."
+            emptyText="添加描述..."
           />
-          
+
           <div className="text-sm text-muted-foreground">
-            Created {formatDistanceToNow(new Date(notebook.created), { addSuffix: true })} • 
-            Updated {formatDistanceToNow(new Date(notebook.updated), { addSuffix: true })}
+            创建于 {formatDistanceToNow(new Date(notebook.created), { addSuffix: true })} •
+            更新于 {formatDistanceToNow(new Date(notebook.updated), { addSuffix: true })}
           </div>
         </div>
       </div>
@@ -117,9 +117,9 @@ export function NotebookHeader({ notebook }: NotebookHeaderProps) {
       <ConfirmDialog
         open={showDeleteDialog}
         onOpenChange={setShowDeleteDialog}
-        title="Delete Notebook"
-        description={`Are you sure you want to delete "${notebook.name}"? This action cannot be undone and will delete all sources, notes, and chat sessions.`}
-        confirmText="Delete Forever"
+        title="删除笔记本"
+        description={`您确定要删除"${notebook.name}"吗？此操作无法撤销，将删除所有来源、笔记和聊天会话。`}
+        confirmText="永久删除"
         confirmVariant="destructive"
         onConfirm={handleDelete}
       />

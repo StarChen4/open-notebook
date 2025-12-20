@@ -51,7 +51,7 @@ export default function NotebooksPage() {
         <div className="p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold">Notebooks</h1>
+            <h1 className="text-2xl font-bold">笔记本</h1>
             <Button variant="outline" size="sm" onClick={() => refetch()}>
               <RefreshCw className="h-4 w-4" />
             </Button>
@@ -60,33 +60,33 @@ export default function NotebooksPage() {
             <Input
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
-              placeholder="Search notebooks..."
+              placeholder="搜索笔记本..."
               className="w-full sm:w-64"
             />
             <Button onClick={() => setCreateDialogOpen(true)}>
               <Plus className="h-4 w-4 mr-2" />
-              New Notebook
+              新建笔记本
             </Button>
           </div>
         </div>
         
         <div className="space-y-8">
-          <NotebookList 
-            notebooks={filteredActive} 
+          <NotebookList
+            notebooks={filteredActive}
             isLoading={isLoading}
-            title="Active Notebooks"
-            emptyTitle={isSearching ? 'No notebooks match your search' : undefined}
-            emptyDescription={isSearching ? 'Try using a different notebook name.' : undefined}
+            title="活跃的笔记本"
+            emptyTitle={isSearching ? '没有找到匹配的笔记本' : undefined}
+            emptyDescription={isSearching ? '请尝试使用不同的笔记本名称。' : undefined}
           />
-          
+
           {hasArchived && (
-            <NotebookList 
-              notebooks={filteredArchived} 
+            <NotebookList
+              notebooks={filteredArchived}
               isLoading={false}
-              title="Archived Notebooks"
+              title="已归档的笔记本"
               collapsible
-              emptyTitle={isSearching ? 'No archived notebooks match your search' : undefined}
-              emptyDescription={isSearching ? 'Modify your search to find archived notebooks.' : undefined}
+              emptyTitle={isSearching ? '没有找到匹配的已归档笔记本' : undefined}
+              emptyDescription={isSearching ? '修改搜索条件以查找已归档的笔记本。' : undefined}
             />
           )}
         </div>

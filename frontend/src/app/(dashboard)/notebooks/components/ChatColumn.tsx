@@ -79,8 +79,8 @@ export function ChatColumn({ notebookId, contextSelections }: ChatColumnProps) {
         <CardContent className="flex-1 flex items-center justify-center">
           <div className="text-center text-muted-foreground">
             <AlertCircle className="h-12 w-12 mx-auto mb-4 opacity-50" />
-            <p className="text-sm">Unable to load chat</p>
-            <p className="text-xs mt-2">Please try refreshing the page</p>
+            <p className="text-sm">无法加载聊天</p>
+            <p className="text-xs mt-2">请尝试刷新页面</p>
           </div>
         </CardContent>
       </Card>
@@ -89,7 +89,7 @@ export function ChatColumn({ notebookId, contextSelections }: ChatColumnProps) {
 
   return (
     <ChatPanel
-      title="Chat with Notebook"
+      title="与笔记本聊天"
       contextType="notebook"
       messages={chat.messages}
       isStreaming={chat.isSending}

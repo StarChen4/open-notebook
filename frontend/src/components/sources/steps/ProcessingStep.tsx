@@ -45,21 +45,21 @@ export function ProcessingStep({
   return (
     <div className="space-y-8">
       <FormSection
-        title="Transformations (optional)"
-        description="Apply AI transformations to analyze and extract insights from your content."
+        title="转换（可选）"
+        description="应用AI转换来分析和提取内容中的洞察。"
       >
         <CheckboxList
           items={transformationItems}
           selectedIds={selectedTransformations}
           onToggle={onToggleTransformation}
           loading={loading}
-          emptyMessage="No transformations found."
+          emptyMessage="未找到转换。"
         />
       </FormSection>
 
       <FormSection
-        title="Processing Settings"
-        description="Configure how your source will be processed and stored."
+        title="处理设置"
+        description="配置来源的处理和存储方式。"
       >
         <div className="space-y-4">
           {settings?.default_embedding_option === 'ask' && (
@@ -74,9 +74,9 @@ export function ProcessingStep({
                     className="mt-0.5"
                   />
                   <div className="flex-1">
-                    <span className="text-sm font-medium block">Enable embedding for search</span>
+                    <span className="text-sm font-medium block">启用搜索嵌入</span>
                     <p className="text-xs text-muted-foreground mt-1">
-                      Allows this source to be found in vector searches and AI queries
+                      允许在向量搜索和AI查询中找到此来源
                     </p>
                   </div>
                 </label>
@@ -89,10 +89,10 @@ export function ProcessingStep({
               <div className="flex items-start gap-3">
                 <div className="w-4 h-4 bg-primary rounded-full mt-0.5 flex-shrink-0"></div>
                 <div className="flex-1">
-                  <span className="text-sm font-medium block text-primary">Embedding enabled automatically</span>
+                  <span className="text-sm font-medium block text-primary">自动启用嵌入</span>
                   <p className="text-xs text-primary mt-1">
-                    Your settings are configured to always embed content for vector search.
-                    You can change this in <span className="font-medium">Settings</span>.
+                    您的设置已配置为始终嵌入内容以进行向量搜索。
+                    您可以在<span className="font-medium">设置</span>中更改此选项。
                   </p>
                 </div>
               </div>
@@ -104,10 +104,10 @@ export function ProcessingStep({
               <div className="flex items-start gap-3">
                 <div className="w-4 h-4 bg-muted-foreground rounded-full mt-0.5 flex-shrink-0"></div>
                 <div className="flex-1">
-                  <span className="text-sm font-medium block text-foreground">Embedding disabled</span>
+                  <span className="text-sm font-medium block text-foreground">嵌入已禁用</span>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Your settings are configured to skip embedding. Vector search won&apos;t be available for this source.
-                    You can change this in <span className="font-medium">Settings</span>.
+                    您的设置已配置为跳过嵌入。此来源将无法使用向量搜索。
+                    您可以在<span className="font-medium">设置</span>中更改此选项。
                   </p>
                 </div>
               </div>

@@ -27,7 +27,7 @@ export default function TransformationsPage() {
         <div className="p-6 space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <h1 className="text-2xl font-bold">Transformations</h1>
+              <h1 className="text-2xl font-bold">转换</h1>
               <Button variant="outline" size="sm" onClick={() => refetch()}>
                 <RefreshCw className="h-4 w-4" />
             </Button>
@@ -36,21 +36,21 @@ export default function TransformationsPage() {
 
         <div className="max-w-5xl">
           <p className="text-muted-foreground">
-            Transformations are prompts that will be used by the LLM to process a source and extract insights, summaries, etc.
+            转换是LLM用于处理来源并提取见解、摘要等内容的提示词。
           </p>
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Choose a workspace</p>
-            <TabsList aria-label="Transformation views" className="w-full max-w-xl">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">选择工作区</p>
+            <TabsList aria-label="转换视图" className="w-full max-w-xl">
               <TabsTrigger value="transformations" className="flex items-center gap-2">
                 <Wand2 className="h-4 w-4" />
-                Transformations
+                转换
               </TabsTrigger>
               <TabsTrigger value="playground" className="flex items-center gap-2">
                 <Play className="h-4 w-4" />
-                Playground
+                试验场
               </TabsTrigger>
             </TabsList>
           </div>

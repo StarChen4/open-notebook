@@ -26,15 +26,15 @@ export function NotebooksStep({
   return (
     <div className="space-y-6">
       <FormSection
-        title="Select Notebooks (optional)"
-        description="Choose which notebooks should contain this source. You can select multiple notebooks or leave this empty."
+        title="选择笔记本（可选）"
+        description="选择哪些笔记本应包含此来源。您可以选择多个笔记本或将其留空。"
       >
         <CheckboxList
           items={notebookItems}
           selectedIds={selectedNotebooks}
           onToggle={onToggleNotebook}
           loading={loading}
-          emptyMessage="No notebooks found."
+          emptyMessage="未找到笔记本。"
         />
       </FormSection>
     </div>
