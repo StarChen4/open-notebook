@@ -58,7 +58,7 @@ export function AddModelForm({ modelType, providers }: AddModelFormProps) {
   if (availableProviders.length === 0) {
     return (
       <div className="text-sm text-muted-foreground">
-        No providers available for {getModelTypeName()} models
+        没有可用于{getModelTypeName()}模型的提供商
       </div>
     )
   }
@@ -75,22 +75,22 @@ export function AddModelForm({ modelType, providers }: AddModelFormProps) {
       <DialogTrigger asChild>
         <Button size="sm">
           <Plus className="h-4 w-4 mr-2" />
-          Add Model
+          添加模型
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Add {getModelTypeName()} Model</DialogTitle>
+          <DialogTitle>添加{getModelTypeName()}模型</DialogTitle>
           <DialogDescription>
-            Configure a new {getModelTypeName()} model from available providers.
+            从可用的提供商配置新的{getModelTypeName()}模型。
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <Label htmlFor="provider">Provider</Label>
+            <Label htmlFor="provider">提供商</Label>
             <Select onValueChange={(value) => setValue('provider', value)} required>
               <SelectTrigger>
-                <SelectValue placeholder="Select a provider" />
+                <SelectValue placeholder="选择提供商" />
               </SelectTrigger>
               <SelectContent>
                 {availableProviders.map((provider) => (
@@ -101,15 +101,15 @@ export function AddModelForm({ modelType, providers }: AddModelFormProps) {
               </SelectContent>
             </Select>
             {errors.provider && (
-              <p className="text-sm text-destructive mt-1">Provider is required</p>
+              <p className="text-sm text-destructive mt-1">提供商为必填项</p>
             )}
           </div>
 
           <div>
-            <Label htmlFor="name">Model Name</Label>
+            <Label htmlFor="name">模型名称</Label>
             <Input
               id="name"
-              {...register('name', { required: 'Model name is required' })}
+              {...register('name', { required: '模型名称为必填项' })}
               placeholder={getModelPlaceholder()}
             />
             {errors.name && (
@@ -117,16 +117,16 @@ export function AddModelForm({ modelType, providers }: AddModelFormProps) {
             )}
             <p className="text-xs text-muted-foreground mt-1">
               {modelType === 'language' && watch('provider') === 'azure' &&
-                'For Azure, use the deployment name as the model name'}
+                '对于 Azure，请使用部署名称作为模型名称'}
             </p>
           </div>
 
           <div className="flex justify-end gap-2">
             <Button type="button" variant="outline" onClick={() => setOpen(false)}>
-              Cancel
+              取消
             </Button>
             <Button type="submit" disabled={createModel.isPending}>
-              {createModel.isPending ? 'Adding...' : 'Add Model'}
+              {createModel.isPending ? '添加中...' : '添加模型'}
             </Button>
           </div>
         </form>

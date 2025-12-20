@@ -28,47 +28,47 @@ interface DefaultConfig {
 const defaultConfigs: DefaultConfig[] = [
   {
     key: 'default_chat_model',
-    label: 'Chat Model',
-    description: 'Used for chat conversations',
+    label: '聊天模型',
+    description: '用于聊天对话',
     modelType: 'language',
     required: true
   },
   {
     key: 'default_transformation_model',
-    label: 'Transformation Model',
-    description: 'Used for summaries, insights, and transformations',
+    label: '转换模型',
+    description: '用于摘要、洞察和转换',
     modelType: 'language',
     required: true
   },
   {
     key: 'default_tools_model',
-    label: 'Tools Model',
-    description: 'Used for function calling - OpenAI or Anthropic recommended',
+    label: '工具模型',
+    description: '用于函数调用 - 推荐 OpenAI 或 Anthropic',
     modelType: 'language'
   },
   {
     key: 'large_context_model',
-    label: 'Large Context Model',
-    description: 'Used for processing large documents - Gemini recommended',
+    label: '大上下文模型',
+    description: '用于处理大型文档 - 推荐 Gemini',
     modelType: 'language'
   },
   {
     key: 'default_embedding_model',
-    label: 'Embedding Model',
-    description: 'Used for semantic search and vector embeddings',
+    label: '嵌入模型',
+    description: '用于语义搜索和向量嵌入',
     modelType: 'embedding',
     required: true
   },
   {
     key: 'default_text_to_speech_model',
-    label: 'Text-to-Speech Model',
-    description: 'Used for podcast generation',
+    label: '文本转语音模型',
+    description: '用于播客生成',
     modelType: 'text_to_speech'
   },
   {
     key: 'default_speech_to_text_model',
-    label: 'Speech-to-Text Model',
-    description: 'Used for audio transcription',
+    label: '语音转文本模型',
+    description: '用于音频转录',
     modelType: 'speech_to_text'
   }
 ]
@@ -153,9 +153,9 @@ export function DefaultModelsSection({ models, defaults }: DefaultModelsSectionP
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Default Model Assignments</CardTitle>
+        <CardTitle>默认模型分配</CardTitle>
         <CardDescription>
-          Configure which models to use for different purposes across Open Notebook
+          配置 Open Notebook 在不同用途下使用的模型
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -163,8 +163,8 @@ export function DefaultModelsSection({ models, defaults }: DefaultModelsSectionP
           <Alert>
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
-              Missing required models: {missingRequired.join(', ')}. 
-              Open Notebook may not function properly without these.
+              缺少必需的模型：{missingRequired.join('、')}。
+              没有这些模型，Open Notebook 可能无法正常工作。
             </AlertDescription>
           </Alert>
         )}
@@ -190,13 +190,13 @@ export function DefaultModelsSection({ models, defaults }: DefaultModelsSectionP
                   >
                     <SelectTrigger className={
                       config.required && !isValidModel && availableModels.length > 0
-                        ? 'border-destructive' 
+                        ? 'border-destructive'
                         : ''
                     }>
                       <SelectValue placeholder={
-                        config.required && !isValidModel && availableModels.length > 0 
-                          ? "⚠️ Required - Select a model"
-                          : "Select a model"
+                        config.required && !isValidModel && availableModels.length > 0
+                          ? "⚠️ 必需 - 选择模型"
+                          : "选择模型"
                       } />
                     </SelectTrigger>
                     <SelectContent>
@@ -236,7 +236,7 @@ export function DefaultModelsSection({ models, defaults }: DefaultModelsSectionP
             rel="noopener noreferrer"
             className="text-sm text-primary hover:underline"
           >
-            Which model should I choose? →
+            我应该选择哪个模型？ →
           </a>
         </div>
       </CardContent>
