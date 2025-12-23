@@ -147,6 +147,17 @@ class TestTokenUtilities:
             assert isinstance(count, int)
             assert count > 0
 
+    def test_token_count_fallback_on_network_error(self):
+        """Test fallback when tiktoken cannot reach remote resources."""
+        from unittest.mock import patch
+
+        with patch("tiktoken.get_encoding", side_effect=ConnectionError("network down")):
+            text = "offline environment test"
+            count = token_count(text)
+
+            assert isinstance(count, int)
+            assert count > 0
+
 
 # ============================================================================
 # TEST SUITE 3: Version Utilities

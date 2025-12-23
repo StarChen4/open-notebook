@@ -27,8 +27,9 @@ def token_count(input_string: str) -> int:
         encoding = tiktoken.get_encoding("o200k_base")
         tokens = encoding.encode(input_string)
         return len(tokens)
-    except ImportError:
-        # Fallback: simple word count estimation
+    except Exception:
+        # Fallback: simple word count estimation when tiktoken is unavailable
+        # or when it cannot download encoding files (e.g., offline environments).
         return int(len(input_string.split()) * 1.3)
 
 
