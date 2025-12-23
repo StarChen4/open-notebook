@@ -1,5 +1,7 @@
 notebooks/
-data/
+data/*
+!data/tiktoken-cache/
+!data/tiktoken-cache/**
 .uploads/
 .venv/
 .env

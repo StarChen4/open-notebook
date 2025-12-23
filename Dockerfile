@@ -75,6 +75,8 @@ COPY --from=builder /app/frontend/public /app/frontend/public
 EXPOSE 8502 5055
 
 RUN mkdir -p /app/data
+# Pre-seed tiktoken cache for offline token counting
+COPY --from=builder /app/data/tiktoken-cache /app/data/tiktoken-cache
 
 # Copy and make executable the wait-for-api script
 COPY scripts/wait-for-api.sh /app/scripts/wait-for-api.sh
