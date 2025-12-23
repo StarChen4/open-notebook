@@ -56,6 +56,13 @@ COPY open_notebook/__init__.py ./open_notebook/__init__.py
 # Install dependencies with optimizations (this layer will be cached unless dependencies change)
 RUN uv sync --frozen --no-dev
 
+# Pre-download tiktoken encoding files for offline use
+# This prevents runtime attempts to download from openaipublic.blob.core.windows.net
+RUN mkdir -p /app/data/tiktoken-cache && \
+    TIKTOKEN_CACHE_DIR=/app/data/tiktoken-cache \
+    /app/.venv/bin/python -c "import tiktoken; tiktoken.get_encoding('o200k_base')" || \
+    echo "Warning: Failed to pre-download tiktoken encoding, will use fallback estimation"
+
 # Copy the rest of the application code
 COPY . /app
 
@@ -115,6 +122,9 @@ COPY --from=builder /app/.venv /app/.venv
 
 # Copy the application code
 COPY --from=builder /app /app
+
+# Copy pre-downloaded tiktoken cache for offline use
+COPY --from=builder /app/data/tiktoken-cache /app/data/tiktoken-cache
 
 # Copy built frontend from builder stage
 COPY --from=builder /app/frontend/.next/standalone /app/frontend/

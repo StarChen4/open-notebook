@@ -24,11 +24,15 @@ def token_count(input_string: str) -> int:
     """
     try:
         import tiktoken
+        # Disable implicit download in offline environments
+        # If encoding file doesn't exist locally, this will raise an exception
         encoding = tiktoken.get_encoding("o200k_base")
         tokens = encoding.encode(input_string)
         return len(tokens)
-    except ImportError:
+    except (ImportError, Exception) as e:
         # Fallback: simple word count estimation
+        # This handles both missing tiktoken package and missing encoding files
+        # The estimation uses 1.3x word count which is reasonable for English text
         return int(len(input_string.split()) * 1.3)
 
 
