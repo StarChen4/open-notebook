@@ -1,7 +1,9 @@
 .env
 prompts/patterns/user/
 /notebooks/
-data/
+data/*
+!data/tiktoken-cache/
+!data/tiktoken-cache/**
 .uploads/
 sqlite-db/
 surreal-data/

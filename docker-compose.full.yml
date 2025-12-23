@@ -22,4 +22,5 @@ services:
       - surrealdb
     volumes:
       - ./notebook_data:/app/data
+      - ./data/tiktoken-cache:/app/data/tiktoken-cache
     restart: always
