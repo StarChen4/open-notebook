@@ -28,7 +28,13 @@ def token_count(input_string: str) -> int:
         tokens = encoding.encode(input_string)
         return len(tokens)
     except ImportError:
-        # Fallback: simple word count estimation
+        # tiktoken not installed - use fallback
+        return int(len(input_string.split()) * 1.3)
+    except Exception as e:
+        # Network error, cache miss, or other tiktoken errors
+        # Silently fallback to word count estimation for offline environments
+        import logging
+        logging.warning(f"Tiktoken failed ({type(e).__name__}: {e}), using word count fallback")
         return int(len(input_string.split()) * 1.3)
 
 

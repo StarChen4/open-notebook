@@ -69,6 +69,13 @@ COPY --from=builder /app/.venv /app/.venv
 # Copy the application code
 COPY --from=builder /app /app
 
+# Pre-download tiktoken models to cache (requires internet during build)
+# This ensures offline environments can use token counting without network access
+RUN mkdir -p /app/data/tiktoken-cache && \
+    TIKTOKEN_CACHE_DIR=/app/data/tiktoken-cache \
+    /app/.venv/bin/python -c "import tiktoken; tiktoken.get_encoding('o200k_base'); print('Tiktoken cache prepared')" || \
+    echo "Warning: tiktoken preload failed, token counting will use fallback estimation"
+
 # Copy built frontend from builder stage
 COPY --from=builder /app/frontend/.next/standalone /app/frontend/
 COPY --from=builder /app/frontend/.next/static /app/frontend/.next/static
