@@ -77,9 +77,10 @@ RUN mkdir -p /app/data/tiktoken-cache && \
     echo "Warning: tiktoken preload failed, token counting will use fallback estimation"
 
 # Copy built frontend from builder stage
-COPY --from=builder /app/frontend/.next/standalone /app/frontend/
-COPY --from=builder /app/frontend/.next/static /app/frontend/.next/static
-COPY --from=builder /app/frontend/public /app/frontend/public
+# Standalone mode requires specific directory structure: server.js, .next, and public in same directory
+COPY --from=builder /app/frontend/.next/standalone /app/frontend/.next/standalone
+COPY --from=builder /app/frontend/.next/static /app/frontend/.next/standalone/.next/static
+COPY --from=builder /app/frontend/public /app/frontend/.next/standalone/public
 
 # Create directories for data persistence
 RUN mkdir -p /app/data /mydata
