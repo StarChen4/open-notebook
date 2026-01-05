@@ -152,6 +152,61 @@
       "matches": "匹配项 ({count})"
     }
   },
+  "models": {
+    "title": "模型管理",
+    "description": "为 Open Notebook 的不同功能配置 AI 模型",
+    "failedToLoad": "加载模型数据失败",
+    "providers": {
+      "title": "AI 提供商",
+      "description": "通过环境变量配置提供商以启用其模型。",
+      "configuredCount": "已配置 {available} / {total}",
+      "showMore": "显示更多 {count} 个",
+      "showLess": "收起"
+    },
+    "defaults": {
+      "title": "默认模型",
+      "description": "选择在应用程序中用于不同用途的模型",
+      "chatModel": {
+        "label": "对话模型",
+        "description": "用于聊天对话"
+      },
+      "transformationModel": {
+        "label": "转换模型",
+        "description": "用于摘要、见解和转换"
+      },
+      "toolsModel": {
+        "label": "工具模型",
+        "description": "用于函数调用 - 推荐使用 OpenAI 或 Anthropic"
+      },
+      "largeContextModel": {
+        "label": "大上下文模型",
+        "description": "用于处理大型文档 - 推荐使用 Gemini"
+      },
+      "embeddingModel": {
+        "label": "嵌入模型",
+        "description": "用于语义搜索和向量嵌入"
+      },
+      "textToSpeechModel": {
+        "label": "文本转语音模型",
+        "description": "用于生成播客"
+      },
+      "speechToTextModel": {
+        "label": "语音转文本模型",
+        "description": "用于音频转录"
+      },
+      "notSet": "未设置",
+      "required": "必填",
+      "embeddingChangeWarning": "更改嵌入模型将需要重新嵌入所有资料。这是一项高成本操作。",
+      "continueAnyway": "继续"
+    },
+    "modelTypes": {
+      "language": "语言模型",
+      "embedding": "嵌入模型",
+      "textToSpeech": "文本转语音模型",
+      "speechToText": "语音转文本模型",
+      "noModelsAvailable": "没有可用的{type}"
+    }
+  },
   "validation": {
     "nameRequired": "名称为必填项",
     "invalidEmail": "无效的电子邮件地址",

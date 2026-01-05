@@ -152,6 +152,61 @@
       "matches": "Matches ({count})"
     }
   },
+  "models": {
+    "title": "Model Management",
+    "description": "Configure AI models for different purposes across Open Notebook",
+    "failedToLoad": "Failed to load models data",
+    "providers": {
+      "title": "AI Providers",
+      "description": "Configure providers through environment variables to enable their models.",
+      "configuredCount": "{available} of {total} configured",
+      "showMore": "Show {count} more",
+      "showLess": "Show less"
+    },
+    "defaults": {
+      "title": "Default Models",
+      "description": "Select which models to use for different purposes throughout the application",
+      "chatModel": {
+        "label": "Chat Model",
+        "description": "Used for chat conversations"
+      },
+      "transformationModel": {
+        "label": "Transformation Model",
+        "description": "Used for summaries, insights, and transformations"
+      },
+      "toolsModel": {
+        "label": "Tools Model",
+        "description": "Used for function calling - OpenAI or Anthropic recommended"
+      },
+      "largeContextModel": {
+        "label": "Large Context Model",
+        "description": "Used for processing large documents - Gemini recommended"
+      },
+      "embeddingModel": {
+        "label": "Embedding Model",
+        "description": "Used for semantic search and vector embeddings"
+      },
+      "textToSpeechModel": {
+        "label": "Text-to-Speech Model",
+        "description": "Used for podcast generation"
+      },
+      "speechToTextModel": {
+        "label": "Speech-to-Text Model",
+        "description": "Used for audio transcription"
+      },
+      "notSet": "Not set",
+      "required": "Required",
+      "embeddingChangeWarning": "Changing the embedding model will require re-embedding all sources. This is an expensive operation.",
+      "continueAnyway": "Continue anyway"
+    },
+    "modelTypes": {
+      "language": "Language Models",
+      "embedding": "Embedding Models",
+      "textToSpeech": "Text-to-Speech Models",
+      "speechToText": "Speech-to-Text Models",
+      "noModelsAvailable": "No {type} models available"
+    }
+  },
   "validation": {
     "nameRequired": "Name is required",
     "invalidEmail": "Invalid email address",
