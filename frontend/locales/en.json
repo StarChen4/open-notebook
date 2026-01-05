@@ -110,6 +110,48 @@
     "yes": "Yes",
     "no": "No"
   },
+  "search": {
+    "title": "Ask and Search",
+    "chooseMode": "Choose a mode",
+    "askTab": "Ask (beta)",
+    "searchTab": "Search",
+    "ask": {
+      "title": "Ask Your Knowledge Base (beta)",
+      "description": "The LLM will answer your query based on the documents in your knowledge base.",
+      "questionLabel": "Question",
+      "questionPlaceholder": "Enter your question...",
+      "submitHint": "Press Cmd/Ctrl+Enter to submit",
+      "noEmbeddingWarning": "You can't use this feature because you have no embedding model selected. Please set one up in the Models page.",
+      "usingDefaultModels": "Using Default Models",
+      "usingCustomModels": "Using Custom Models",
+      "advancedButton": "Advanced",
+      "strategyModel": "Strategy",
+      "answerModel": "Answer",
+      "finalModel": "Final",
+      "notSet": "Not set",
+      "askButton": "Ask",
+      "processing": "Processing...",
+      "saveToNotebooks": "Save to Notebooks"
+    },
+    "search": {
+      "title": "Search",
+      "description": "Search your knowledge base for specific keywords or concepts",
+      "queryPlaceholder": "Enter search query...",
+      "searchButton": "Search",
+      "enterToSearch": "Press Enter to search",
+      "searchType": "Search Type",
+      "vectorSearchRequiresEmbedding": "Vector search requires an embedding model. Only text search is available.",
+      "textSearch": "Text Search",
+      "vectorSearch": "Vector Search",
+      "searchIn": "Search In",
+      "searchSources": "Search Sources",
+      "searchNotes": "Search Notes",
+      "resultsFound": "{count} result{plural} found",
+      "searchTypeLabel": "{type} search",
+      "noResults": "No results found for \"{query}\"",
+      "matches": "Matches ({count})"
+    }
+  },
   "validation": {
     "nameRequired": "Name is required",
     "invalidEmail": "Invalid email address",

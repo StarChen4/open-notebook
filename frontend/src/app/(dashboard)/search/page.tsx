@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { AppShell } from '@/components/layout/AppShell'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Input } from '@/components/ui/input'
@@ -24,6 +25,10 @@ import { AdvancedModelsDialog } from '@/components/search/AdvancedModelsDialog'
 import { SaveToNotebooksDialog } from '@/components/search/SaveToNotebooksDialog'
 
 export default function SearchPage() {
+  const t = useTranslations('search')
+  const tAsk = useTranslations('search.ask')
+  const tSearch = useTranslations('search.search')
+
   // URL params
   const searchParams = useSearchParams()
   const urlQuery = searchParams.get('q') || ''
@@ -70,7 +75,7 @@ export default function SearchPage() {
   }, [availableModels])
 
   const resolveModelName = (id?: string | null) => {
-    if (!id) return 'Not set'
+    if (!id) return tAsk('notSet')
     return modelNameById.get(id) ?? id
   }
 
@@ -157,19 +162,19 @@ export default function SearchPage() {
   return (
     <AppShell>
       <div className="p-4 md:p-6">
-        <h1 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">Ask and Search</h1>
+        <h1 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">{t('title')}</h1>
 
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as 'ask' | 'search')} className="w-full space-y-6">
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Choose a mode</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{t('chooseMode')}</p>
             <TabsList aria-label="Ask or search your knowledge base" className="w-full max-w-xl">
               <TabsTrigger value="ask">
                 <MessageCircleQuestion className="h-4 w-4" />
-                Ask (beta)
+                {t('askTab')}
               </TabsTrigger>
               <TabsTrigger value="search">
                 <Search className="h-4 w-4" />
-                Search
+                {t('searchTab')}
               </TabsTrigger>
             </TabsList>
           </div>
@@ -177,18 +182,18 @@ export default function SearchPage() {
           <TabsContent value="ask" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Ask Your Knowledge Base (beta)</CardTitle>
+                <CardTitle className="text-lg">{tAsk('title')}</CardTitle>
                 <p className="text-sm text-muted-foreground">
-                  The LLM will answer your query based on the documents in your knowledge base.
+                  {tAsk('description')}
                 </p>
               </CardHeader>
               <CardContent className="space-y-4">
                 {/* Question Input */}
                 <div className="space-y-2">
-                  <Label htmlFor="ask-question">Question</Label>
+                  <Label htmlFor="ask-question">{tAsk('questionLabel')}</Label>
                   <Textarea
                     id="ask-question"
-                    placeholder="Enter your question..."
+                    placeholder={tAsk('questionPlaceholder')}
                     value={askQuestion}
                     onChange={(e) => setAskQuestion(e.target.value)}
                     onKeyDown={(e) => {
@@ -202,21 +207,21 @@ export default function SearchPage() {
                     rows={3}
                     aria-label="Enter your question to ask the knowledge base"
                   />
-                  <p className="text-xs text-muted-foreground">Press Cmd/Ctrl+Enter to submit</p>
+                  <p className="text-xs text-muted-foreground">{tAsk('submitHint')}</p>
                 </div>
 
                 {/* Models Display */}
                 {!hasEmbeddingModel ? (
                   <div className="flex items-center gap-2 p-3 text-sm text-amber-600 dark:text-amber-500 bg-amber-50 dark:bg-amber-950/20 rounded-md">
                     <AlertCircle className="h-4 w-4" />
-                    <span>You can&apos;t use this feature because you have no embedding model selected. Please set one up in the Models page.</span>
+                    <span>{tAsk('noEmbeddingWarning')}</span>
                   </div>
                 ) : (
                   <>
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <Label className="text-xs text-muted-foreground">
-                          {customModels ? 'Using Custom Models' : 'Using Default Models'}
+                          {customModels ? tAsk('usingCustomModels') : tAsk('usingDefaultModels')}
                         </Label>
                         <Button
                           variant="ghost"
@@ -226,18 +231,18 @@ export default function SearchPage() {
                           className="h-auto py-1 px-2"
                         >
                           <Settings className="h-3 w-3 mr-1" />
-                          Advanced
+                          {tAsk('advancedButton')}
                         </Button>
                       </div>
                       <div className="flex gap-2 text-xs flex-wrap">
                         <Badge variant="secondary">
-                          Strategy: {resolveModelName(customModels?.strategy || modelDefaults?.default_chat_model)}
+                          {tAsk('strategyModel')}: {resolveModelName(customModels?.strategy || modelDefaults?.default_chat_model)}
                         </Badge>
                         <Badge variant="secondary">
-                          Answer: {resolveModelName(customModels?.answer || modelDefaults?.default_chat_model)}
+                          {tAsk('answerModel')}: {resolveModelName(customModels?.answer || modelDefaults?.default_chat_model)}
                         </Badge>
                         <Badge variant="secondary">
-                          Final: {resolveModelName(customModels?.finalAnswer || modelDefaults?.default_chat_model)}
+                          {tAsk('finalModel')}: {resolveModelName(customModels?.finalAnswer || modelDefaults?.default_chat_model)}
                         </Badge>
                       </div>
                     </div>
@@ -251,10 +256,10 @@ export default function SearchPage() {
                         {ask.isStreaming ? (
                           <>
                             <LoadingSpinner size="sm" className="mr-2" />
-                            Processing...
+                            {tAsk('processing')}
                           </>
                         ) : (
-                          'Ask'
+                          tAsk('askButton')
                         )}
                       </Button>
 
@@ -265,7 +270,7 @@ export default function SearchPage() {
                           className="w-full"
                         >
                           <Save className="h-4 w-4 mr-2" />
-                          Save to Notebooks
+                          {tAsk('saveToNotebooks')}
                         </Button>
                       )}
                     </div>
@@ -308,9 +313,9 @@ export default function SearchPage() {
           <TabsContent value="search" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Search</CardTitle>
+                <CardTitle className="text-lg">{tSearch('title')}</CardTitle>
                 <p className="text-sm text-muted-foreground">
-                  Search your knowledge base for specific keywords or concepts
+                  {tSearch('description')}
                 </p>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -319,7 +324,7 @@ export default function SearchPage() {
                   <div className="flex flex-col sm:flex-row gap-2">
                     <Input
                       id="search-query"
-                      placeholder="Enter search query..."
+                      placeholder={tSearch('queryPlaceholder')}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       onKeyPress={handleKeyPress}
@@ -338,21 +343,21 @@ export default function SearchPage() {
                       ) : (
                         <Search className="h-4 w-4 mr-2" />
                       )}
-                      Search
+                      {tSearch('searchButton')}
                     </Button>
                   </div>
-                  <p className="text-xs text-muted-foreground">Press Enter to search</p>
+                  <p className="text-xs text-muted-foreground">{tSearch('enterToSearch')}</p>
                 </div>
 
                 {/* Search Options */}
                 <div className="space-y-4">
                   {/* Search Type */}
                   <div className="space-y-2">
-                    <Label>Search Type</Label>
+                    <Label>{tSearch('searchType')}</Label>
                     {!hasEmbeddingModel && (
                       <div className="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-500">
                         <AlertCircle className="h-4 w-4" />
-                        <span>Vector search requires an embedding model. Only text search is available.</span>
+                        <span>{tSearch('vectorSearchRequiresEmbedding')}</span>
                       </div>
                     )}
                     <RadioGroup
@@ -363,7 +368,7 @@ export default function SearchPage() {
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value="text" id="text" />
                         <Label htmlFor="text" className="font-normal cursor-pointer">
-                          Text Search
+                          {tSearch('textSearch')}
                         </Label>
                       </div>
                       <div className="flex items-center space-x-2">
@@ -376,7 +381,7 @@ export default function SearchPage() {
                           htmlFor="vector"
                           className={`font-normal ${!hasEmbeddingModel ? 'text-muted-foreground cursor-not-allowed' : 'cursor-pointer'}`}
                         >
-                          Vector Search
+                          {tSearch('vectorSearch')}
                         </Label>
                       </div>
                     </RadioGroup>
@@ -384,7 +389,7 @@ export default function SearchPage() {
 
                   {/* Search Locations */}
                   <div className="space-y-2">
-                    <Label>Search In</Label>
+                    <Label>{tSearch('searchIn')}</Label>
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
                         <Checkbox
@@ -394,7 +399,7 @@ export default function SearchPage() {
                           disabled={searchMutation.isPending}
                         />
                         <Label htmlFor="sources" className="font-normal cursor-pointer">
-                          Search Sources
+                          {tSearch('searchSources')}
                         </Label>
                       </div>
                       <div className="flex items-center space-x-2">
@@ -405,7 +410,7 @@ export default function SearchPage() {
                           disabled={searchMutation.isPending}
                         />
                         <Label htmlFor="notes" className="font-normal cursor-pointer">
-                          Search Notes
+                          {tSearch('searchNotes')}
                         </Label>
                       </div>
                     </div>
@@ -417,15 +422,18 @@ export default function SearchPage() {
                   <div className="mt-6 space-y-3">
                     <div className="flex items-center justify-between">
                       <h3 className="text-sm font-medium">
-                        {searchMutation.data.total_count} result{searchMutation.data.total_count !== 1 ? 's' : ''} found
+                        {tSearch('resultsFound', {
+                          count: searchMutation.data.total_count,
+                          plural: searchMutation.data.total_count !== 1 ? 's' : ''
+                        })}
                       </h3>
-                      <Badge variant="outline">{searchMutation.data.search_type} search</Badge>
+                      <Badge variant="outline">{tSearch('searchTypeLabel', { type: searchMutation.data.search_type })}</Badge>
                     </div>
 
                     {searchMutation.data.results.length === 0 ? (
                       <Card>
                         <CardContent className="pt-6 text-center text-muted-foreground">
-                          No results found for &ldquo;{searchQuery}&rdquo;
+                          {tSearch('noResults', { query: searchQuery })}
                         </CardContent>
                       </Card>
                     ) : (
@@ -456,7 +464,7 @@ export default function SearchPage() {
                                 <Collapsible className="mt-3">
                                   <CollapsibleTrigger className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
                                     <ChevronDown className="h-4 w-4" />
-                                    Matches ({result.matches.length})
+                                    {tSearch('matches', { count: result.matches.length })}
                                   </CollapsibleTrigger>
                                   <CollapsibleContent className="mt-2 space-y-1">
                                     {result.matches.map((match, i) => (

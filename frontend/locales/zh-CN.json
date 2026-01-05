@@ -110,6 +110,48 @@
     "yes": "是",
     "no": "否"
   },
+  "search": {
+    "title": "搜索与问答",
+    "chooseMode": "选择模式",
+    "askTab": "问答 (测试版)",
+    "searchTab": "搜索",
+    "ask": {
+      "title": "向知识库提问 (测试版)",
+      "description": "大语言模型将基于您知识库中的文档回答您的问题。",
+      "questionLabel": "问题",
+      "questionPlaceholder": "输入您的问题...",
+      "submitHint": "按 Cmd/Ctrl+Enter 提交",
+      "noEmbeddingWarning": "您无法使用此功能，因为您尚未选择嵌入模型。请在模型页面中设置一个。",
+      "usingDefaultModels": "使用默认模型",
+      "usingCustomModels": "使用自定义模型",
+      "advancedButton": "高级设置",
+      "strategyModel": "策略",
+      "answerModel": "回答",
+      "finalModel": "最终",
+      "notSet": "未设置",
+      "askButton": "提问",
+      "processing": "处理中...",
+      "saveToNotebooks": "保存到笔记本"
+    },
+    "search": {
+      "title": "搜索",
+      "description": "在您的知识库中搜索特定关键词或概念",
+      "queryPlaceholder": "输入搜索查询...",
+      "searchButton": "搜索",
+      "enterToSearch": "按 Enter 搜索",
+      "searchType": "搜索类型",
+      "vectorSearchRequiresEmbedding": "向量搜索需要嵌入模型。只能使用文本搜索。",
+      "textSearch": "文本搜索",
+      "vectorSearch": "向量搜索",
+      "searchIn": "搜索范围",
+      "searchSources": "搜索资料",
+      "searchNotes": "搜索笔记",
+      "resultsFound": "找到 {count} 条结果{plural}",
+      "searchTypeLabel": "{type}搜索",
+      "noResults": "未找到"{query}"的搜索结果",
+      "matches": "匹配项 ({count})"
+    }
+  },
   "validation": {
     "nameRequired": "名称为必填项",
     "invalidEmail": "无效的电子邮件地址",
