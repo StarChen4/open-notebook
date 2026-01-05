@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { QueryProvider } from "@/components/providers/QueryProvider";
@@ -15,27 +17,34 @@ export const metadata: Metadata = {
   description: "Privacy-focused research and knowledge management",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale?: string }>;
 }>) {
+  const { locale } = await params;
+  const messages = await getMessages();
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale || "en"} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className={inter.className}>
-        <ErrorBoundary>
-          <ThemeProvider>
-            <QueryProvider>
-              <ConnectionGuard>
-                {children}
-                <Toaster />
-              </ConnectionGuard>
-            </QueryProvider>
-          </ThemeProvider>
-        </ErrorBoundary>
+        <NextIntlClientProvider messages={messages}>
+          <ErrorBoundary>
+            <ThemeProvider>
+              <QueryProvider>
+                <ConnectionGuard>
+                  {children}
+                  <Toaster />
+                </ConnectionGuard>
+              </QueryProvider>
+            </ThemeProvider>
+          </ErrorBoundary>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

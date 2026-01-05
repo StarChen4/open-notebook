@@ -1,19 +1,25 @@
+import createMiddleware from 'next-intl/middleware'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { routing } from './i18n/routing'
+
+const intlMiddleware = createMiddleware(routing)
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Redirect root to notebooks
-  if (pathname === '/') {
-    return NextResponse.redirect(new URL('/notebooks', request.url))
+  // Redirect root to notebooks (needs to handle both / and /[locale]/)
+  if (pathname === '/' || pathname.match(/^\/(en|zh-CN)$/)) {
+    const locale = pathname.match(/^\/(en|zh-CN)$/)?.[1] || routing.defaultLocale
+    return NextResponse.redirect(new URL(`/${locale}/notebooks`, request.url))
   }
 
-  return NextResponse.next()
+  // Apply next-intl middleware
+  return intlMiddleware(request)
 }
 
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!api|_next|_vercel|.*\\..*).*)'
   ],
 }

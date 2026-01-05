@@ -1,0 +1,92 @@
+{
+  "common": {
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "create": "创建",
+    "search": "搜索",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "confirm": "确认",
+    "close": "关闭",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "refresh": "刷新",
+    "archive": "归档",
+    "unarchive": "取消归档",
+    "name": "名称",
+    "description": "描述",
+    "actions": "操作",
+    "required": "必填",
+    "optional": "可选",
+    "yes": "是",
+    "no": "否"
+  },
+  "navigation": {
+    "heading": "导航",
+    "sources": "资料库",
+    "notebooks": "笔记本",
+    "askAndSearch": "搜索与问答",
+    "podcasts": "播客",
+    "models": "模型",
+    "transformations": "转换",
+    "settings": "设置",
+    "advanced": "高级"
+  },
+  "commandPalette": {
+    "title": "命令面板",
+    "description": "导航、搜索或询问您的知识库",
+    "placeholder": "输入命令或搜索...",
+    "searchAndAsk": "搜索与问答",
+    "searchFor": "搜索"{query}"",
+    "askAbout": "询问关于"{query}"",
+    "orSearchKnowledgeBase": "或搜索您的知识库",
+    "loadingNotebooks": "加载笔记本中...",
+    "create": "创建",
+    "createSource": "创建资料",
+    "createNotebook": "创建笔记本",
+    "createPodcast": "创建播客",
+    "theme": "主题",
+    "lightTheme": "浅色主题",
+    "darkTheme": "深色主题",
+    "systemTheme": "系统主题"
+  },
+  "notebooks": {
+    "title": "笔记本",
+    "newNotebook": "新建笔记本",
+    "searchPlaceholder": "搜索笔记本...",
+    "activeNotebooks": "活跃笔记本",
+    "archivedNotebooks": "已归档笔记本",
+    "noNotebooksMatch": "没有匹配的笔记本",
+    "tryDifferentName": "请尝试使用其他笔记本名称。",
+    "noArchivedMatch": "没有匹配的已归档笔记本",
+    "modifySearch": "修改搜索条件以查找已归档笔记本。",
+    "createDialog": {
+      "title": "创建新笔记本",
+      "description": "创建一个专门的空间，用于组织相关的资料和笔记。",
+      "nameLabel": "名称",
+      "namePlaceholder": "输入笔记本名称",
+      "descriptionLabel": "描述",
+      "descriptionPlaceholder": "描述此笔记本的用途和范围...",
+      "creating": "创建中…",
+      "createButton": "创建笔记本"
+    }
+  },
+  "sources": {
+    "title": "资料库",
+    "newSource": "新建资料",
+    "searchPlaceholder": "搜索资料...",
+    "activeSources": "活跃资料",
+    "archivedSources": "已归档资料"
+  },
+  "validation": {
+    "nameRequired": "名称为必填项",
+    "invalidEmail": "无效的电子邮件地址",
+    "invalidUrl": "无效的网址",
+    "minLength": "至少需要 {min} 个字符",
+    "maxLength": "不能超过 {max} 个字符"
+  }
+}

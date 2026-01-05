@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import withNextIntl from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
   // Enable standalone output for optimized Docker deployment
@@ -24,4 +25,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl('./src/i18n/request.ts')(nextConfig);

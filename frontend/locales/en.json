@@ -1,0 +1,92 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "refresh": "Refresh",
+    "archive": "Archive",
+    "unarchive": "Unarchive",
+    "name": "Name",
+    "description": "Description",
+    "actions": "Actions",
+    "required": "Required",
+    "optional": "Optional",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "navigation": {
+    "heading": "Navigation",
+    "sources": "Sources",
+    "notebooks": "Notebooks",
+    "askAndSearch": "Ask and Search",
+    "podcasts": "Podcasts",
+    "models": "Models",
+    "transformations": "Transformations",
+    "settings": "Settings",
+    "advanced": "Advanced"
+  },
+  "commandPalette": {
+    "title": "Command Palette",
+    "description": "Navigate, search, or ask your knowledge base",
+    "placeholder": "Type a command or search...",
+    "searchAndAsk": "Search & Ask",
+    "searchFor": "Search for \"{query}\"",
+    "askAbout": "Ask about \"{query}\"",
+    "orSearchKnowledgeBase": "Or search your knowledge base",
+    "loadingNotebooks": "Loading notebooks...",
+    "create": "Create",
+    "createSource": "Create Source",
+    "createNotebook": "Create Notebook",
+    "createPodcast": "Create Podcast",
+    "theme": "Theme",
+    "lightTheme": "Light Theme",
+    "darkTheme": "Dark Theme",
+    "systemTheme": "System Theme"
+  },
+  "notebooks": {
+    "title": "Notebooks",
+    "newNotebook": "New Notebook",
+    "searchPlaceholder": "Search notebooks...",
+    "activeNotebooks": "Active Notebooks",
+    "archivedNotebooks": "Archived Notebooks",
+    "noNotebooksMatch": "No notebooks match your search",
+    "tryDifferentName": "Try using a different notebook name.",
+    "noArchivedMatch": "No archived notebooks match your search",
+    "modifySearch": "Modify your search to find archived notebooks.",
+    "createDialog": {
+      "title": "Create New Notebook",
+      "description": "Start organizing your research with a dedicated space for related sources and notes.",
+      "nameLabel": "Name",
+      "namePlaceholder": "Enter notebook name",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Describe the purpose and scope of this notebook...",
+      "creating": "Creating…",
+      "createButton": "Create Notebook"
+    }
+  },
+  "sources": {
+    "title": "Sources",
+    "newSource": "New Source",
+    "searchPlaceholder": "Search sources...",
+    "activeSources": "Active Sources",
+    "archivedSources": "Archived Sources"
+  },
+  "validation": {
+    "nameRequired": "Name is required",
+    "invalidEmail": "Invalid email address",
+    "invalidUrl": "Invalid URL",
+    "minLength": "Must be at least {min} characters",
+    "maxLength": "Must be no more than {max} characters"
+  }
+}
