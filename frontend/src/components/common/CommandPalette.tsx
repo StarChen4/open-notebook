@@ -150,7 +150,7 @@ export function CommandPalette() {
         (nb.description && nb.description.toLowerCase().includes(queryLower))
       ) ?? false)
     )
-  }, [queryLower, notebooks])
+  }, [queryLower, notebooks, navigationItems, createItems, themeItems])
 
   // Determine if we should show the Search/Ask section at the top
   const showSearchFirst = query.trim() && !hasCommandMatch
