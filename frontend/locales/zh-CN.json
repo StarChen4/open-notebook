@@ -76,11 +76,39 @@
     }
   },
   "sources": {
-    "title": "资料库",
+    "title": "全部资料",
+    "pageDescription": "浏览您所有笔记本中的资料。使用方向键导航，按 Enter 打开。",
     "newSource": "新建资料",
     "searchPlaceholder": "搜索资料...",
     "activeSources": "活跃资料",
-    "archivedSources": "已归档资料"
+    "archivedSources": "已归档资料",
+    "emptyTitle": "暂无资料",
+    "emptyDescription": "所有笔记本中的资料都会显示在这里",
+    "tableHeaders": {
+      "type": "类型",
+      "title": "标题",
+      "created": "创建时间",
+      "insights": "见解",
+      "embedded": "已嵌入",
+      "actions": "操作"
+    },
+    "sourceTypes": {
+      "link": "链接",
+      "file": "文件",
+      "text": "文本"
+    },
+    "untitledSource": "无标题资料",
+    "loadingMore": "加载更多资料...",
+    "failedToLoad": "加载资料失败",
+    "deleteDialog": {
+      "title": "删除资料",
+      "description": "确定要删除"{title}"吗？此操作无法撤销。",
+      "confirm": "删除",
+      "successMessage": "资料删除成功",
+      "failedMessage": "删除资料失败"
+    },
+    "yes": "是",
+    "no": "否"
   },
   "validation": {
     "nameRequired": "名称为必填项",

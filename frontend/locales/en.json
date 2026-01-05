@@ -76,11 +76,39 @@
     }
   },
   "sources": {
-    "title": "Sources",
+    "title": "All Sources",
+    "pageDescription": "Browse all sources across your notebooks. Use arrow keys to navigate and Enter to open.",
     "newSource": "New Source",
     "searchPlaceholder": "Search sources...",
     "activeSources": "Active Sources",
-    "archivedSources": "Archived Sources"
+    "archivedSources": "Archived Sources",
+    "emptyTitle": "No sources yet",
+    "emptyDescription": "Sources from all notebooks will appear here",
+    "tableHeaders": {
+      "type": "Type",
+      "title": "Title",
+      "created": "Created",
+      "insights": "Insights",
+      "embedded": "Embedded",
+      "actions": "Actions"
+    },
+    "sourceTypes": {
+      "link": "Link",
+      "file": "File",
+      "text": "Text"
+    },
+    "untitledSource": "Untitled Source",
+    "loadingMore": "Loading more sources...",
+    "failedToLoad": "Failed to load sources",
+    "deleteDialog": {
+      "title": "Delete Source",
+      "description": "Are you sure you want to delete \"{title}\"? This action cannot be undone.",
+      "confirm": "Delete",
+      "successMessage": "Source deleted successfully",
+      "failedMessage": "Failed to delete source"
+    },
+    "yes": "Yes",
+    "no": "No"
   },
   "validation": {
     "nameRequired": "Name is required",
