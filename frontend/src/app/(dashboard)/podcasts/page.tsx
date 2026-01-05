@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 import { AppShell } from '@/components/layout/AppShell'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -9,6 +10,7 @@ import { TemplatesTab } from '@/components/podcasts/TemplatesTab'
 import { Mic, LayoutTemplate } from 'lucide-react'
 
 export default function PodcastsPage() {
+  const t = useTranslations('podcasts')
   const [activeTab, setActiveTab] = useState<'episodes' | 'templates'>('episodes')
 
   return (
@@ -16,9 +18,9 @@ export default function PodcastsPage() {
       <div className="flex-1 overflow-y-auto">
         <div className="px-6 py-6 space-y-6">
           <header className="space-y-1">
-            <h1 className="text-2xl font-semibold tracking-tight">Podcasts</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">{t('title')}</h1>
             <p className="text-muted-foreground">
-              Keep track of generated episodes and manage reusable templates.
+              {t('description')}
             </p>
           </header>
 
@@ -28,15 +30,15 @@ export default function PodcastsPage() {
             className="space-y-6"
           >
             <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Choose a view</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{t('chooseView')}</p>
               <TabsList aria-label="Podcast views" className="w-full max-w-md">
                 <TabsTrigger value="episodes">
                   <Mic className="h-4 w-4" />
-                  Episodes
+                  {t('episodesTab')}
                 </TabsTrigger>
                 <TabsTrigger value="templates">
                   <LayoutTemplate className="h-4 w-4" />
-                  Templates
+                  {t('templatesTab')}
                 </TabsTrigger>
               </TabsList>
             </div>

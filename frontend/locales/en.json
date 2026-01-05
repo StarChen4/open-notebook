@@ -207,6 +207,13 @@
       "noModelsAvailable": "No {type} models available"
     }
   },
+  "podcasts": {
+    "title": "Podcasts",
+    "description": "Keep track of generated episodes and manage reusable templates.",
+    "chooseView": "Choose a view",
+    "episodesTab": "Episodes",
+    "templatesTab": "Templates"
+  },
   "validation": {
     "nameRequired": "Name is required",
     "invalidEmail": "Invalid email address",

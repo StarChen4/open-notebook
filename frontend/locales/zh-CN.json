@@ -207,6 +207,13 @@
       "noModelsAvailable": "没有可用的{type}"
     }
   },
+  "podcasts": {
+    "title": "播客",
+    "description": "跟踪已生成的节目并管理可重用的模板。",
+    "chooseView": "选择视图",
+    "episodesTab": "节目",
+    "templatesTab": "模板"
+  },
   "validation": {
     "nameRequired": "名称为必填项",
     "invalidEmail": "无效的电子邮件地址",
