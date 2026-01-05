@@ -11,7 +11,9 @@ export function middleware(request: NextRequest) {
   // Redirect root to notebooks (needs to handle both / and /[locale]/)
   if (pathname === '/' || pathname.match(/^\/(en|zh-CN)$/)) {
     const locale = pathname.match(/^\/(en|zh-CN)$/)?.[1] || routing.defaultLocale
-    return NextResponse.redirect(new URL(`/${locale}/notebooks`, request.url))
+    // For default locale with 'as-needed' prefix, redirect without locale prefix
+    const targetPath = locale === routing.defaultLocale ? '/notebooks' : `/${locale}/notebooks`
+    return NextResponse.redirect(new URL(targetPath, request.url))
   }
 
   // Apply next-intl middleware
