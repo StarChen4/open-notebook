@@ -41,8 +41,8 @@
     "description": "导航、搜索或询问您的知识库",
     "placeholder": "输入命令或搜索...",
     "searchAndAsk": "搜索与问答",
-    "searchFor": "搜索"{query}"",
-    "askAbout": "询问关于"{query}"",
+    "searchFor": "搜索\"{query}\"",
+    "askAbout": "询问关于\"{query}\"",
     "orSearchKnowledgeBase": "或搜索您的知识库",
     "loadingNotebooks": "加载笔记本中...",
     "create": "创建",
@@ -102,7 +102,7 @@
     "failedToLoad": "加载资料失败",
     "deleteDialog": {
       "title": "删除资料",
-      "description": "确定要删除"{title}"吗？此操作无法撤销。",
+      "description": "确定要删除\"{title}\"吗？此操作无法撤销。",
       "confirm": "删除",
       "successMessage": "资料删除成功",
       "failedMessage": "删除资料失败"
@@ -148,7 +148,7 @@
       "searchNotes": "搜索笔记",
       "resultsFound": "找到 {count} 条结果{plural}",
       "searchTypeLabel": "{type}搜索",
-      "noResults": "未找到"{query}"的搜索结果",
+      "noResults": "未找到\"{query}\"的搜索结果",
       "matches": "匹配项 ({count})"
     }
   },
