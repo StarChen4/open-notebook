@@ -50,11 +50,11 @@ export function AddButton({
           <DropdownMenuContent align="start" side="right">
             <DropdownMenuItem onClick={handleAddSource} className="gap-2">
               <FileText className="h-4 w-4" />
-              Source
+              资源
             </DropdownMenuItem>
             <DropdownMenuItem onClick={handleAddNotebook} className="gap-2">
               <Book className="h-4 w-4" />
-              Notebook <span className="text-xs text-muted-foreground ml-auto">Coming soon</span>
+              笔记本 <span className="text-xs text-muted-foreground ml-auto">即将推出</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -77,18 +77,18 @@ export function AddButton({
             className={className}
           >
             <Plus className="h-4 w-4 mr-2" />
-            Add
+            添加
             <ChevronDown className="h-3 w-3 ml-auto" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
           <DropdownMenuItem onClick={handleAddSource} className="gap-2">
             <FileText className="h-4 w-4" />
-            Source
+            资源
           </DropdownMenuItem>
           <DropdownMenuItem onClick={handleAddNotebook} className="gap-2">
             <Book className="h-4 w-4" />
-            Notebook <span className="text-xs text-muted-foreground ml-auto">Coming soon</span>
+            笔记本 <span className="text-xs text-muted-foreground ml-auto">即将推出</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

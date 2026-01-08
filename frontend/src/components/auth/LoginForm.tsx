@@ -81,9 +81,9 @@ export function LoginForm() {
       <div className="min-h-screen flex items-center justify-center bg-background p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <CardTitle>Connection Error</CardTitle>
+            <CardTitle>连接错误</CardTitle>
             <CardDescription>
-              Unable to connect to the API server
+              无法连接到 API 服务器
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -91,21 +91,21 @@ export function LoginForm() {
               <div className="flex items-start gap-2 text-red-600 text-sm">
                 <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
                 <div className="flex-1">
-                  {error || 'Unable to connect to server. Please check if the API is running.'}
+                  {error || '无法连接到服务器。请检查 API 是否正在运行。'}
                 </div>
               </div>
 
               {configInfo && (
                 <div className="space-y-2 text-xs text-muted-foreground border-t pt-3">
-                  <div className="font-medium">Diagnostic Information:</div>
+                  <div className="font-medium">诊断信息：</div>
                   <div className="space-y-1 font-mono">
-                    <div>Version: {configInfo.version}</div>
-                    <div>Built: {new Date(configInfo.buildTime).toLocaleString()}</div>
-                    <div className="break-all">API URL: {configInfo.apiUrl}</div>
-                    <div className="break-all">Frontend: {typeof window !== 'undefined' ? window.location.href : 'N/A'}</div>
+                    <div>版本：{configInfo.version}</div>
+                    <div>构建时间：{new Date(configInfo.buildTime).toLocaleString()}</div>
+                    <div className="break-all">API 地址：{configInfo.apiUrl}</div>
+                    <div className="break-all">前端地址：{typeof window !== 'undefined' ? window.location.href : 'N/A'}</div>
                   </div>
                   <div className="text-xs pt-2">
-                    Check browser console for detailed logs (look for 🔧 [Config] messages)
+                    请查看浏览器控制台以获取详细日志（查找 🔧 [Config] 消息）
                   </div>
                 </div>
               )}
@@ -114,7 +114,7 @@ export function LoginForm() {
                 onClick={() => window.location.reload()}
                 className="w-full"
               >
-                Retry Connection
+                重试连接
               </Button>
             </div>
           </CardContent>
@@ -139,9 +139,9 @@ export function LoginForm() {
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle>Open Notebook</CardTitle>
+          <CardTitle>开放笔记本</CardTitle>
           <CardDescription>
-            Enter your password to access the application
+            输入密码以访问应用程序
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -149,7 +149,7 @@ export function LoginForm() {
             <div>
               <Input
                 type="password"
-                placeholder="Password"
+                placeholder="密码"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
@@ -168,12 +168,12 @@ export function LoginForm() {
               className="w-full"
               disabled={isLoading || !password.trim()}
             >
-              {isLoading ? 'Signing in...' : 'Sign In'}
+              {isLoading ? '登录中...' : '登录'}
             </Button>
 
             {configInfo && (
               <div className="text-xs text-center text-muted-foreground pt-2 border-t">
-                <div>Version {configInfo.version}</div>
+                <div>版本 {configInfo.version}</div>
                 <div className="font-mono text-[10px]">{configInfo.apiUrl}</div>
               </div>
             )}
