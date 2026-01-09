@@ -175,7 +175,7 @@ export function CommandPalette() {
               forceMount
             >
               <Search className="h-4 w-4" />
-              <span>搜索"{query}"</span>
+              <span>搜索 {query}</span>
             </CommandItem>
             <CommandItem
               value={`__ask__ ${query}`}
@@ -183,7 +183,7 @@ export function CommandPalette() {
               forceMount
             >
               <MessageCircleQuestion className="h-4 w-4" />
-              <span>提问"{query}"</span>
+              <span>提问 {query}</span>
             </CommandItem>
           </CommandGroup>
         )}
@@ -262,7 +262,7 @@ export function CommandPalette() {
                 forceMount
               >
                 <Search className="h-4 w-4" />
-                <span>搜索"{query}"</span>
+                <span>搜索 {query}</span>
               </CommandItem>
               <CommandItem
                 value={`__ask__ ${query}`}
@@ -270,7 +270,7 @@ export function CommandPalette() {
                 forceMount
               >
                 <MessageCircleQuestion className="h-4 w-4" />
-                <span>提问"{query}"</span>
+                <span>提问 {query}</span>
               </CommandItem>
             </CommandGroup>
           </>
